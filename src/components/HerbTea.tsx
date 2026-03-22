@@ -64,6 +64,8 @@ export function HerbTea() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    cardsRef.current = [];
+
     const ctx = gsap.context(() => {
       gsap.from(headingRef.current, {
         y: 40,

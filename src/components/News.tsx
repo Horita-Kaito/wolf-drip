@@ -43,6 +43,8 @@ export function News() {
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    itemsRef.current = [];
+
     const ctx = gsap.context(() => {
       gsap.from(headingRef.current, {
         y: 40,

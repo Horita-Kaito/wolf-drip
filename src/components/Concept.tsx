@@ -20,6 +20,8 @@ export function Concept() {
   const bodyRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
+    linesRef.current = [];
+
     const ctx = gsap.context(() => {
       // Heading fade in
       gsap.from(headingRef.current, {

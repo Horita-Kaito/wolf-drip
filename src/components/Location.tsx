@@ -36,6 +36,8 @@ export function Location() {
   const infoItemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    infoItemsRef.current = [];
+
     const ctx = gsap.context(() => {
       gsap.from(leftRef.current, {
         x: -80,
