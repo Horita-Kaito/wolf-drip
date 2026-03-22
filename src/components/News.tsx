@@ -44,7 +44,6 @@ export function News() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading fade in
       gsap.from(headingRef.current, {
         y: 40,
         opacity: 0,
@@ -56,7 +55,6 @@ export function News() {
         },
       });
 
-      // Staggered news items
       itemsRef.current.forEach((item, i) => {
         gsap.from(item, {
           y: 40,
@@ -81,31 +79,29 @@ export function News() {
       id="news"
       className="py-32 px-8 bg-[var(--color-bg)]"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div ref={headingRef} className="mb-16">
+        <div ref={headingRef} className="mb-16 text-center">
           <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             News
           </p>
-          <div className="flex items-baseline gap-6 flex-wrap">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none">
-              Latest
-            </h2>
-            <span className="text-[var(--color-muted)] text-sm tracking-widest font-[family-name:var(--font-display-ja)]">
-              お知らせ
-            </span>
-          </div>
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none">
+            Latest
+          </h2>
+          <p className="mt-3 text-sm text-[var(--color-muted)] tracking-widest font-[family-name:var(--font-display-ja)]">
+            お知らせ
+          </p>
         </div>
 
         {/* News list */}
-        <div className="space-y-0">
+        <div className="max-w-4xl mx-auto">
           {newsItems.map((item, i) => (
             <div
               key={i}
               ref={(el) => {
                 if (el) itemsRef.current[i] = el;
               }}
-              className="group border-b border-neutral-800 py-8 cursor-pointer hover:border-[var(--color-accent)]/30 transition-colors duration-500"
+              className="group border-b border-[var(--color-border)] py-8 cursor-pointer hover:border-[var(--color-accent)]/30 transition-colors duration-500"
             >
               <div className="flex items-start gap-6 md:gap-10">
                 {/* Date */}
@@ -122,7 +118,7 @@ export function News() {
                       {item.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-[family-name:var(--font-body-ja)] mb-2 group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <h3 className="text-base font-[family-name:var(--font-body-ja)] mb-2 group-hover:text-[var(--color-accent)] transition-colors duration-300">
                     {item.title}
                   </h3>
                   <p className="text-sm text-[var(--color-muted)] leading-relaxed font-[family-name:var(--font-body-ja)]">

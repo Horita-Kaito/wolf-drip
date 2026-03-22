@@ -8,22 +8,28 @@
   --color-muted: #666666;
   --color-herb: #8a9a7b;
   --color-herb-dark: #6b7a5e;
+  --color-bg-coffee: #080604;
+  --color-bg-herb: #0a0d0a;
+  --color-border: #1f1f1f;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
 
-html {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-}
+  body {
+    font-family: var(--font-body), var(--font-body-ja), sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-body {
-  font-family: var(--font-body), var(--font-body-ja), sans-serif;
-  overflow-x: hidden;
+  /* Prevent GSAP pin-spacer from expanding page width */
+  .pin-spacer {
+    overflow: hidden !important;
+    max-width: 100vw !important;
+  }
 }
 
 ::selection {

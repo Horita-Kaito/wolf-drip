@@ -61,7 +61,6 @@ export function Coffee() {
 
       const scrollWidth = track.scrollWidth - window.innerWidth;
 
-      // Heading reveal
       gsap.from(headingRef.current, {
         y: 80,
         opacity: 0,
@@ -73,7 +72,6 @@ export function Coffee() {
         },
       });
 
-      // Horizontal scroll
       gsap.to(track, {
         x: -scrollWidth,
         ease: "none",
@@ -87,7 +85,6 @@ export function Coffee() {
         },
       });
 
-      // Card stagger on enter
       const cards = track.querySelectorAll(".coffee-card");
       gsap.from(cards, {
         opacity: 0,
@@ -110,11 +107,10 @@ export function Coffee() {
     <section
       ref={sectionRef}
       id="coffee"
-      className="relative h-screen overflow-hidden"
-      style={{ backgroundColor: "#080604" }}
+      className="relative h-screen overflow-hidden bg-[var(--color-bg-coffee)]"
     >
       {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_50%_50%,_#c8a97e_1px,_transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_50%_50%,_var(--color-accent)_1px,_transparent_1px)] bg-[size:24px_24px]" />
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
@@ -123,10 +119,10 @@ export function Coffee() {
         </span>
       </div>
 
-      {/* Section heading - fixed during scroll */}
-      <div ref={headingRef} className="absolute top-10 left-10 z-10">
-        <p className="text-[var(--color-accent)] text-xs tracking-[0.4em] uppercase font-[family-name:var(--font-body)] mb-3">
-          — Coffee
+      {/* Section heading - centered at top */}
+      <div ref={headingRef} className="absolute top-10 left-0 right-0 z-10 text-center">
+        <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase font-[family-name:var(--font-body)] mb-3">
+          Coffee
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.9]">
           Our Beans
@@ -139,12 +135,12 @@ export function Coffee() {
       {/* Horizontal scroll track */}
       <div
         ref={trackRef}
-        className="flex items-end h-full gap-6 pl-10 pr-[50vw] pb-10 pt-32"
+        className="flex items-end justify-start h-full gap-6 px-[max(2rem,calc((100vw-1152px)/2))] pb-10 pt-44"
       >
         {coffeeItems.map((item, i) => (
           <div
             key={i}
-            className="coffee-card group flex-shrink-0 w-[420px] h-[72vh] relative overflow-hidden cursor-pointer"
+            className="coffee-card group flex-shrink-0 w-[400px] h-[65vh] relative overflow-hidden cursor-pointer"
           >
             {/* Image area */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#1a1208] to-[#0d0a05] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
@@ -152,7 +148,7 @@ export function Coffee() {
 
             {/* Top: Number + Roast */}
             <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start">
-              <span className="font-[family-name:var(--font-display)] text-[5rem] font-bold leading-none text-[var(--color-accent)]/[0.08]">
+              <span className="font-[family-name:var(--font-display)] text-[4rem] font-bold leading-none text-[var(--color-accent)]/[0.08]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="mt-2 text-[9px] tracking-[0.25em] uppercase px-3 py-1.5 border border-[var(--color-accent)]/40 text-[var(--color-accent)] font-[family-name:var(--font-body)]">
@@ -185,6 +181,8 @@ export function Coffee() {
             <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-accent)] group-hover:w-full transition-all duration-700" />
           </div>
         ))}
+        {/* End spacer */}
+        <div className="flex-shrink-0 w-[40vw]" />
       </div>
     </section>
   );

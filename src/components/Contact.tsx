@@ -13,7 +13,6 @@ export function Contact() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Content reveal
       gsap.from(contentRef.current, {
         y: 60,
         opacity: 0,
@@ -25,7 +24,6 @@ export function Contact() {
         },
       });
 
-      // Form fields stagger
       const fields = formRef.current?.querySelectorAll(".form-field");
       if (fields) {
         gsap.from(fields, {
@@ -54,12 +52,12 @@ export function Contact() {
       {/* Top decorative line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-[var(--color-accent)]/30" />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div ref={contentRef} className="text-center mb-20">
           <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             Contact
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,6rem)] font-bold leading-none mb-4">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none mb-4">
             Get in Touch
           </h2>
           <p className="text-[var(--color-muted)] text-sm tracking-widest font-[family-name:var(--font-display-ja)]">
@@ -81,7 +79,7 @@ export function Contact() {
               <input
                 type="text"
                 placeholder="お名前"
-                className="w-full bg-transparent border-b border-neutral-700 focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
+                className="w-full bg-transparent border-b border-[var(--color-border)] focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
               />
             </div>
             <div>
@@ -91,7 +89,7 @@ export function Contact() {
               <input
                 type="email"
                 placeholder="メールアドレス"
-                className="w-full bg-transparent border-b border-neutral-700 focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
+                className="w-full bg-transparent border-b border-[var(--color-border)] focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
               />
             </div>
           </div>
@@ -103,7 +101,7 @@ export function Contact() {
             <input
               type="text"
               placeholder="件名"
-              className="w-full bg-transparent border-b border-neutral-700 focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
+              className="w-full bg-transparent border-b border-[var(--color-border)] focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 font-[family-name:var(--font-body-ja)]"
             />
           </div>
 
@@ -114,11 +112,11 @@ export function Contact() {
             <textarea
               rows={5}
               placeholder="メッセージ"
-              className="w-full bg-transparent border-b border-neutral-700 focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 resize-none font-[family-name:var(--font-body-ja)]"
+              className="w-full bg-transparent border-b border-[var(--color-border)] focus:border-[var(--color-accent)] pb-3 text-[var(--color-fg)] placeholder:text-neutral-600 outline-none transition-colors duration-300 resize-none font-[family-name:var(--font-body-ja)]"
             />
           </div>
 
-          <div className="form-field pt-4">
+          <div className="form-field pt-4 text-center">
             <button
               type="button"
               className="group relative inline-flex items-center gap-4 px-10 py-4 border border-[var(--color-accent)] text-[var(--color-accent)] text-sm tracking-[0.2em] uppercase overflow-hidden transition-colors duration-500 hover:text-[var(--color-bg)] font-[family-name:var(--font-body)]"
@@ -143,30 +141,30 @@ export function Contact() {
         </form>
 
         {/* Alternative contact info */}
-        <div className="mt-20 pt-12 border-t border-neutral-800 flex flex-col md:flex-row justify-center items-center gap-10 text-center">
+        <div className="mt-20 pt-12 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-center items-center gap-10 text-center">
           <div>
             <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
               Email
             </p>
-            <p className="text-lg font-[family-name:var(--font-body)]">
+            <p className="text-base font-[family-name:var(--font-body)]">
               info@wolfdrip.coffee
             </p>
           </div>
-          <div className="hidden md:block w-px h-10 bg-neutral-800" />
+          <div className="hidden md:block w-px h-10 bg-[var(--color-border)]" />
           <div>
             <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
               Phone
             </p>
-            <p className="text-lg font-[family-name:var(--font-body)]">
+            <p className="text-base font-[family-name:var(--font-body)]">
               03-1234-5678
             </p>
           </div>
-          <div className="hidden md:block w-px h-10 bg-neutral-800" />
+          <div className="hidden md:block w-px h-10 bg-[var(--color-border)]" />
           <div>
             <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
               Instagram
             </p>
-            <p className="text-lg font-[family-name:var(--font-body)]">
+            <p className="text-base font-[family-name:var(--font-body)]">
               @wolfdrip
             </p>
           </div>

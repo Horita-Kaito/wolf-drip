@@ -65,7 +65,6 @@ export function HerbTea() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading animation
       gsap.from(headingRef.current, {
         y: 40,
         opacity: 0,
@@ -77,7 +76,6 @@ export function HerbTea() {
         },
       });
 
-      // Divider line grows
       gsap.from(lineRef.current, {
         scaleX: 0,
         duration: 1.5,
@@ -88,7 +86,6 @@ export function HerbTea() {
         },
       });
 
-      // Cards fade up with stagger
       cardsRef.current.forEach((card, i) => {
         gsap.from(card, {
           y: 50,
@@ -112,23 +109,22 @@ export function HerbTea() {
     <section
       ref={sectionRef}
       id="herbtea"
-      className="py-32 px-8 relative overflow-hidden"
-      style={{ backgroundColor: "#0a0d0a" }}
+      className="py-32 px-8 relative overflow-hidden bg-[var(--color-bg-herb)]"
     >
       {/* Soft botanical gradient bg */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(138,154,123,0.06)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(138,154,123,0.04)_0%,_transparent_60%)]" />
 
-      <div className="max-w-5xl mx-auto relative">
+      <div className="max-w-6xl mx-auto relative">
         {/* Header */}
         <div ref={headingRef} className="mb-6 text-center">
-          <p className="text-[#8a9a7b] text-xs tracking-[0.5em] uppercase mb-4 font-[family-name:var(--font-body)]">
-            — Herb Tea —
+          <p className="text-[var(--color-herb)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
+            Herb Tea
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.5rem)] font-light leading-tight italic">
             Wild Herbs
           </h2>
-          <p className="mt-3 text-xs text-[var(--color-muted)] tracking-[0.2em] font-[family-name:var(--font-display-ja)]">
+          <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.2em] font-[family-name:var(--font-display-ja)]">
             自然が宿す、野生のハーブティー
           </p>
         </div>
@@ -136,7 +132,7 @@ export function HerbTea() {
         {/* Divider */}
         <div
           ref={lineRef}
-          className="w-24 h-px bg-[#8a9a7b]/40 mx-auto mb-20 origin-center"
+          className="w-24 h-px bg-[var(--color-herb)]/40 mx-auto mb-20 origin-center"
         />
 
         {/* Two-column list layout */}
@@ -147,12 +143,12 @@ export function HerbTea() {
               ref={(el) => {
                 if (el) cardsRef.current[i] = el;
               }}
-              className="group py-8 border-b border-neutral-800/50 hover:border-[#8a9a7b]/30 transition-colors duration-500 cursor-pointer"
+              className="group py-8 border-b border-[var(--color-border)] hover:border-[var(--color-herb)]/30 transition-colors duration-500 cursor-pointer"
             >
               {/* Name row */}
               <div className="flex items-baseline justify-between mb-2">
                 <div>
-                  <h3 className="font-[family-name:var(--font-display)] text-xl font-normal italic group-hover:text-[#8a9a7b] transition-colors duration-500">
+                  <h3 className="font-[family-name:var(--font-display)] text-xl font-normal italic group-hover:text-[var(--color-herb)] transition-colors duration-500">
                     {item.name}
                   </h3>
                   <p className="text-[11px] text-[var(--color-muted)] font-[family-name:var(--font-display-ja)] mt-0.5">
@@ -165,7 +161,7 @@ export function HerbTea() {
               </div>
 
               {/* Flavor tags */}
-              <p className="text-[9px] tracking-[0.2em] uppercase text-[#8a9a7b]/70 font-[family-name:var(--font-body)] mb-2">
+              <p className="text-[9px] tracking-[0.2em] uppercase text-[var(--color-herb)]/70 font-[family-name:var(--font-body)] mb-2">
                 {item.flavor}
               </p>
 

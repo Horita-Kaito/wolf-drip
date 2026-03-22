@@ -15,73 +15,59 @@ const conceptLines = [
 export function Concept() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLParagraphElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
   const linesRef = useRef<HTMLDivElement[]>([]);
   const bodyRef = useRef<HTMLParagraphElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const totalScrollHeight = window.innerHeight * 3;
-
-      // Pin the section
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${totalScrollHeight}`,
-        pin: true,
-      });
-
-      // Heading reveal
+      // Heading fade in
       gsap.from(headingRef.current, {
         opacity: 0,
-        y: 30,
-        duration: 0.8,
+        y: 20,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${totalScrollHeight * 0.1}`,
-          scrub: 1,
+          start: "top 70%",
         },
       });
 
-      // Divider width animation
+      // Divider grow
       gsap.from(dividerRef.current, {
         scaleX: 0,
-        transformOrigin: "left center",
+        duration: 1.2,
+        ease: "power3.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: `top top`,
-          end: `+=${totalScrollHeight * 0.15}`,
-          scrub: 1,
+          start: "top 70%",
         },
       });
 
-      // Stagger line reveals
+      // Concept lines stagger
       linesRef.current.forEach((line, i) => {
-        const startPct = 0.15 + i * 0.2;
-        const endPct = startPct + 0.15;
-
         gsap.from(line, {
-          y: 60,
+          y: 50,
           opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: i * 0.2,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: `+=${totalScrollHeight * startPct}`,
-            end: `+=${totalScrollHeight * endPct}`,
-            scrub: 1,
+            start: "top 60%",
           },
         });
       });
 
-      // Body text reveal
+      // Body text
       gsap.from(bodyRef.current, {
-        y: 40,
+        y: 30,
         opacity: 0,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: `+=${totalScrollHeight * 0.75}`,
-          end: `+=${totalScrollHeight * 0.9}`,
-          scrub: 1,
+          trigger: bodyRef.current,
+          start: "top 85%",
         },
       });
     }, sectionRef);
@@ -93,9 +79,9 @@ export function Concept() {
     <section
       ref={sectionRef}
       id="concept"
-      className="relative h-screen flex items-center justify-center overflow-hidden bg-[var(--color-bg)]"
+      className="py-40 px-8 bg-[var(--color-bg)]"
     >
-      <div className="max-w-5xl mx-auto px-8 w-full">
+      <div className="max-w-6xl mx-auto flex flex-col items-center">
         <p
           ref={headingRef}
           className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]"
@@ -105,19 +91,19 @@ export function Concept() {
 
         <div
           ref={dividerRef}
-          className="w-16 h-px bg-[var(--color-accent)] mb-16"
+          className="w-16 h-px bg-[var(--color-accent)] mb-16 origin-center"
         />
 
-        <div className="space-y-12 mb-20">
+        <div className="flex flex-col items-center gap-10 mb-16">
           {conceptLines.map((line, i) => (
             <div
               key={i}
               ref={(el) => {
                 if (el) linesRef.current[i] = el;
               }}
-              className="flex items-baseline gap-6"
+              className="flex flex-col items-center gap-2"
             >
-              <span className="font-[family-name:var(--font-display)] text-[clamp(2rem,5vw,5rem)] font-bold leading-none">
+              <span className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,4rem)] font-bold leading-none">
                 {line.en}
               </span>
               <span className="text-[var(--color-muted)] text-sm tracking-widest font-[family-name:var(--font-display-ja)]">
@@ -129,7 +115,7 @@ export function Concept() {
 
         <p
           ref={bodyRef}
-          className="text-[var(--color-muted)] text-base leading-[2] max-w-2xl font-[family-name:var(--font-body-ja)]"
+          className="text-[var(--color-muted)] text-sm leading-[2] max-w-2xl text-center font-[family-name:var(--font-body-ja)]"
         >
           WOLF DRIPは、飼い慣らされた日常から解き放たれる一杯を届ける
           スペシャルティコーヒー＆ハーブティースタンド。

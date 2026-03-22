@@ -6,6 +6,29 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const infoItems = [
+  {
+    label: "Address",
+    labelJa: "住所",
+    content: "東京都渋谷区神南1-2-3 WOLF DRIP BLDG. 1F",
+  },
+  {
+    label: "Hours",
+    labelJa: "営業時間",
+    content: "Mon – Fri: 8:00 – 20:00 / Sat – Sun: 9:00 – 21:00",
+  },
+  {
+    label: "Closed",
+    labelJa: "定休日",
+    content: "不定休",
+  },
+  {
+    label: "Phone",
+    labelJa: "電話",
+    content: "03-1234-5678",
+  },
+];
+
 export function Location() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
@@ -14,9 +37,8 @@ export function Location() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Left panel slide in
       gsap.from(leftRef.current, {
-        x: -100,
+        x: -80,
         opacity: 0,
         duration: 1.2,
         ease: "power3.out",
@@ -26,9 +48,8 @@ export function Location() {
         },
       });
 
-      // Right panel slide in
       gsap.from(rightRef.current, {
-        x: 100,
+        x: 80,
         opacity: 0,
         duration: 1.2,
         ease: "power3.out",
@@ -38,7 +59,6 @@ export function Location() {
         },
       });
 
-      // Stagger info items
       infoItemsRef.current.forEach((item, i) => {
         gsap.from(item, {
           y: 30,
@@ -56,41 +76,6 @@ export function Location() {
 
     return () => ctx.revert();
   }, []);
-
-  const infoItems = [
-    {
-      label: "Address",
-      labelJa: "住所",
-      content: (
-        <>
-          東京都渋谷区神南1-2-3
-          <br />
-          WOLF DRIP BLDG. 1F
-        </>
-      ),
-    },
-    {
-      label: "Hours",
-      labelJa: "営業時間",
-      content: (
-        <>
-          Mon – Fri: 8:00 – 20:00
-          <br />
-          Sat – Sun: 9:00 – 21:00
-        </>
-      ),
-    },
-    {
-      label: "Closed",
-      labelJa: "定休日",
-      content: <>不定休</>,
-    },
-    {
-      label: "Phone",
-      labelJa: "電話",
-      content: <>03-1234-5678</>,
-    },
-  ];
 
   return (
     <section
@@ -118,7 +103,7 @@ export function Location() {
                 ref={(el) => {
                   if (el) infoItemsRef.current[i] = el;
                 }}
-                className="border-b border-neutral-800 pb-6"
+                className="border-b border-[var(--color-border)] pb-6"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <h4 className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase font-[family-name:var(--font-body)]">
@@ -128,7 +113,7 @@ export function Location() {
                     {item.labelJa}
                   </span>
                 </div>
-                <p className="text-lg font-[family-name:var(--font-body-ja)]">
+                <p className="text-base font-[family-name:var(--font-body-ja)] leading-relaxed">
                   {item.content}
                 </p>
               </div>
@@ -138,8 +123,7 @@ export function Location() {
 
         {/* Right: Map placeholder */}
         <div ref={rightRef} className="sticky top-32">
-          <div className="aspect-[4/3] rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center overflow-hidden relative group">
-            {/* Placeholder content */}
+          <div className="aspect-[4/3] rounded-2xl bg-neutral-900 border border-[var(--color-border)] flex items-center justify-center overflow-hidden relative">
             <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/50 to-neutral-900" />
             <div className="relative flex flex-col items-center gap-4">
               <div className="w-12 h-12 rounded-full border border-[var(--color-accent)]/30 flex items-center justify-center">
@@ -169,11 +153,9 @@ export function Location() {
             </div>
           </div>
 
-          {/* Access note */}
-          <div className="mt-6 p-6 rounded-xl bg-neutral-900/50 border border-neutral-800/50">
+          <div className="mt-6 p-6 rounded-xl bg-neutral-900/50 border border-[var(--color-border)]">
             <p className="text-sm text-[var(--color-muted)] leading-relaxed font-[family-name:var(--font-body-ja)]">
               渋谷駅ハチ公口より徒歩5分。
-              <br />
               神南エリアの路地裏、緑に囲まれた隠れ家的空間。
             </p>
           </div>
