@@ -30,3 +30,22 @@ export async function getNewsDetail(contentId: string, queries?: MicroCMSQueries
     queries,
   });
 }
+
+// メニューの型定義
+export type MenuItem = {
+  name: string;
+  nameJa: string;
+  type: string | string[];
+  flavor: string;
+  price?: string;
+  description: string;
+  image?: { url: string; width: number; height: number };
+} & MicroCMSListContent;
+
+// メニュー一覧取得
+export async function getMenuList(queries?: MicroCMSQueries) {
+  return client.getList<MenuItem>({
+    endpoint: "menu",
+    queries: { limit: 50, ...queries },
+  });
+}

@@ -6,12 +6,17 @@ import { Location } from "@/components/Location";
 import { News } from "@/components/News";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { getNewsList } from "@/lib/microcms";
+import { getNewsList, getMenuList } from "@/lib/microcms";
 
 export default async function Home() {
-  const { contents: newsItems } = await getNewsList();
+  const [{ contents: newsItems }, { contents: menuItems }] = await Promise.all([
+    getNewsList(),
+    getMenuList(),
+  ]);
 
-  const items = newsItems.map((item) => ({
+  console.log("menuItems:", JSON.stringify(menuItems, null, 2));
+
+  const newsData = newsItems.map((item) => ({
     id: item.id,
     date: new Date(item.date).toLocaleDateString("ja-JP", {
       year: "numeric",
@@ -22,14 +27,36 @@ export default async function Home() {
     title: item.title,
   }));
 
+  const coffeeData = menuItems
+    .filter((item) => [].concat(item.type).includes("コーヒー"))
+    .map((item) => ({
+      name: item.name,
+      nameJa: item.nameJa,
+      flavor: item.flavor,
+      price: item.price,
+      description: item.description,
+      image: item.image?.url,
+    }));
+
+  const herbTeaData = menuItems
+    .filter((item) => [].concat(item.type).includes("ティー"))
+    .map((item) => ({
+      name: item.name,
+      nameJa: item.nameJa,
+      flavor: item.flavor,
+      price: item.price,
+      description: item.description,
+      image: item.image?.url,
+    }));
+
   return (
     <main className="overflow-x-hidden">
       <Hero />
       <Concept />
-      <Coffee />
-      <HerbTea />
+      <Coffee items={coffeeData} />
+      <HerbTea items={herbTeaData} />
       <Location />
-      <News items={items} />
+      <News items={newsData} />
       <Contact />
       <Footer />
     </main>

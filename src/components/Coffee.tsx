@@ -6,50 +6,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const coffeeItems = [
-  {
-    name: "Ethiopia Yirgacheffe",
-    flavor: "Floral / Citrus / Bergamot",
-    price: "¥650",
-    roast: "Light",
-    description:
-      "花のような華やかなアロマと柑橘の酸味。エチオピアの高地が生む繊細な一杯。",
-  },
-  {
-    name: "Colombia Huila",
-    flavor: "Caramel / Walnut / Cherry",
-    price: "¥600",
-    roast: "Medium",
-    description:
-      "キャラメルの甘みとチェリーの余韻。コロンビア南部の火山性土壌が育む豊かなコク。",
-  },
-  {
-    name: "Kenya AA",
-    flavor: "Blackcurrant / Tomato / Brown Sugar",
-    price: "¥700",
-    roast: "Medium",
-    description:
-      "力強い酸味とジューシーな果実感。アフリカの野性がそのまま詰まった一杯。",
-  },
-  {
-    name: "Guatemala Antigua",
-    flavor: "Chocolate / Spice / Honey",
-    price: "¥620",
-    roast: "Medium-Dark",
-    description:
-      "ダークチョコレートとスパイスの調和。火山灰の大地が生む重厚な味わい。",
-  },
-  {
-    name: "Wolf Drip Blend",
-    flavor: "Dark Chocolate / Hazelnut / Smoke",
-    price: "¥550",
-    roast: "Dark",
-    description:
-      "深煎りの力強さとヘーゼルナッツの余韻。Wolf Dripの魂を凝縮したシグネチャーブレンド。",
-  },
-];
+type CoffeeItemProps = {
+  name: string;
+  nameJa: string;
+  flavor: string;
+  price?: string;
+  description: string;
+  image?: string;
+};
 
-export function Coffee() {
+type Props = {
+  items: CoffeeItemProps[];
+};
+
+export function Coffee({ items }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -137,22 +107,23 @@ export function Coffee() {
         ref={trackRef}
         className="flex items-end justify-start h-full gap-6 px-[max(2rem,calc((100vw-1152px)/2))] pb-10 pt-44"
       >
-        {coffeeItems.map((item, i) => (
+        {items.map((item, i) => (
           <div
             key={i}
             className="coffee-card group flex-shrink-0 w-[400px] h-[65vh] relative overflow-hidden cursor-pointer"
           >
             {/* Image area */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#1a1208] to-[#0d0a05] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
-            <div className="absolute inset-0 bg-[url('/coffee-placeholder.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" />
+            {item.image ? (
+              <div className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" style={{ backgroundImage: `url(${item.image})` }} />
+            ) : (
+              <div className="absolute inset-0 bg-[url('/coffee-placeholder.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" />
+            )}
 
-            {/* Top: Number + Roast */}
+            {/* Top: Number */}
             <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start">
               <span className="font-[family-name:var(--font-display)] text-[4rem] font-bold leading-none text-[var(--color-accent)]/[0.08]">
                 {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="mt-2 text-[9px] tracking-[0.25em] uppercase px-3 py-1.5 border border-[var(--color-accent)]/40 text-[var(--color-accent)] font-[family-name:var(--font-body)]">
-                {item.roast} Roast
               </span>
             </div>
 
@@ -168,9 +139,11 @@ export function Coffee() {
                 {item.description}
               </p>
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-display)] text-xl font-light">
-                  {item.price}
-                </span>
+                {item.price && (
+                  <span className="font-[family-name:var(--font-display)] text-xl font-light">
+                    {item.price}
+                  </span>
+                )}
                 <span className="text-[10px] tracking-widest text-[var(--color-muted)] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   View →
                 </span>
