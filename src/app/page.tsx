@@ -28,7 +28,7 @@ export default async function Home() {
   }));
 
   const coffeeData = menuItems
-    .filter((item) => [].concat(item.type).includes("コーヒー"))
+    .filter((item) => ([] as string[]).concat(item.type).includes("コーヒー"))
     .map((item) => ({
       name: item.name,
       nameJa: item.nameJa,
@@ -39,7 +39,7 @@ export default async function Home() {
     }));
 
   const herbTeaData = menuItems
-    .filter((item) => [].concat(item.type).includes("ティー"))
+    .filter((item) => ([] as string[]).concat(item.type).includes("ティー"))
     .map((item) => ({
       name: item.name,
       nameJa: item.nameJa,
