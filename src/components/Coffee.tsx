@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -115,7 +116,13 @@ export function Coffee({ items }: Props) {
             {/* Image area */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#1a1208] to-[#0d0a05] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
             {item.image ? (
-              <div className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" style={{ backgroundImage: `url(${item.image})` }} />
+              <Image
+                src={item.image}
+                alt={item.name}
+                fill
+                sizes="400px"
+                className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-1000"
+              />
             ) : (
               <div className="absolute inset-0 bg-[url('/coffee-placeholder.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" />
             )}

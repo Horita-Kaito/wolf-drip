@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getNewsDetail, getNewsList } from "@/lib/microcms";
 import { notFound } from "next/navigation";
@@ -10,6 +11,26 @@ export async function generateStaticParams() {
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  try {
+    const article = await getNewsDetail(id);
+    const plainDescription = (article.description ?? "")
+      .replace(/<[^>]*>/g, "")
+      .slice(0, 120);
+    return {
+      title: article.title,
+      description: plainDescription,
+      openGraph: {
+        title: article.title,
+        description: plainDescription,
+      },
+    };
+  } catch {
+    return {};
+  }
+}
 
 export default async function NewsDetailPage({ params }: Props) {
   const { id } = await params;

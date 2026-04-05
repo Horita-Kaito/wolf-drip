@@ -31,9 +31,23 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "WOLF DRIP — Specialty Coffee",
+  title: {
+    default: "WOLF DRIP — Specialty Coffee & Herb Tea",
+    template: "%s | WOLF DRIP",
+  },
   description:
-    "A specialty coffee experience crafted with precision and passion.",
+    "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
+  openGraph: {
+    title: "WOLF DRIP — Specialty Coffee & Herb Tea",
+    description:
+      "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
+    siteName: "WOLF DRIP",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -41,11 +55,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "WOLF DRIP",
+    description:
+      "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "神南1-2-3 WOLF DRIP BLDG. 1F",
+      addressLocality: "渋谷区",
+      addressRegion: "東京都",
+      addressCountry: "JP",
+    },
+    telephone: "03-1234-5678",
+    sameAs: [
+      "https://www.instagram.com/wolfdrip2026",
+    ],
+  };
+
   return (
     <html lang="ja">
       <body
         className={`${cormorant.variable} ${dmSans.variable} ${shipporiMincho.variable} ${notoSansJP.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -112,11 +113,13 @@ export function HerbTea({ items }: Props) {
               <div className={item.image ? "flex gap-5" : ""}>
                 {/* Image */}
                 {item.image && (
-                  <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-neutral-900">
-                    <img
+                  <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-neutral-900 relative">
+                    <Image
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="80px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 )}
