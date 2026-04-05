@@ -21,7 +21,7 @@ type Props = {
 export function News({ items }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<HTMLDivElement[]>([]);
+  const itemsRef = useRef<HTMLAnchorElement[]>([]);
 
   useEffect(() => {
     itemsRef.current = [];
