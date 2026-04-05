@@ -9,6 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const wolfRef = useRef<HTMLSpanElement>(null);
+  const dripRef = useRef<HTMLSpanElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const taglineJaRef = useRef<HTMLParagraphElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -16,17 +18,45 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Character split animation on load
-      const chars = titleRef.current?.querySelectorAll(".char");
-      if (chars) {
-        gsap.from(chars, {
-          y: 120,
-          opacity: 0,
-          rotateX: -90,
-          stagger: 0.05,
-          duration: 1.2,
-          ease: "power4.out",
-          delay: 0.3,
+      // DRIP: droplet-like fall animation
+      const dripChars = dripRef.current?.querySelectorAll(".char");
+      if (dripChars) {
+        dripChars.forEach((char, i) => {
+          const tl = gsap.timeline({ delay: 0.8 + i * 0.15 });
+
+          // Start: small droplet forming at the top
+          gsap.set(char, {
+            y: -180,
+            opacity: 0,
+            scaleX: 0.6,
+            scaleY: 1.4,
+          });
+
+          // Phase 1: droplet falls with gravity
+          tl.to(char, {
+            opacity: 1,
+            y: 0,
+            scaleX: 0.7,
+            scaleY: 1.3,
+            duration: 0.6,
+            ease: "power3.in",
+          });
+
+          // Phase 3: splash - squash on landing
+          tl.to(char, {
+            scaleX: 1.3,
+            scaleY: 0.7,
+            duration: 0.1,
+            ease: "power2.out",
+          });
+
+          // Phase 4: settle back to normal shape
+          tl.to(char, {
+            scaleX: 1,
+            scaleY: 1,
+            duration: 0.4,
+            ease: "elastic.out(1, 0.4)",
+          });
         });
       }
 
@@ -36,7 +66,7 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 1.0,
+        delay: 1.8,
       });
 
       // Japanese tagline fade in
@@ -45,14 +75,14 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 1.3,
+        delay: 2.1,
       });
 
       // Scroll indicator fade in
       gsap.from(scrollIndicatorRef.current, {
         opacity: 0,
         duration: 1,
-        delay: 1.8,
+        delay: 2.6,
       });
 
       // Parallax on scroll
@@ -103,15 +133,29 @@ export function Hero() {
           className="font-[family-name:var(--font-display)] text-[clamp(3rem,12vw,12rem)] font-bold leading-none tracking-tighter"
           style={{ perspective: "600px" }}
         >
-          {title.split("").map((char, i) => (
-            <span
-              key={i}
-              className="char inline-block"
-              style={{ transformOrigin: "bottom" }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
+          <span ref={wolfRef}>
+            {"WOLF".split("").map((char, i) => (
+              <span
+                key={i}
+                className="char inline-block"
+                style={{ transformOrigin: "bottom" }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
+          {"\u00A0"}
+          <span ref={dripRef}>
+            {"DRIP".split("").map((char, i) => (
+              <span
+                key={i}
+                className="char inline-block"
+                style={{ transformOrigin: "top" }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
         </h1>
 
         <p

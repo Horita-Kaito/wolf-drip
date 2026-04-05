@@ -125,7 +125,7 @@ export function Coffee() {
           Coffee
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.9]">
-          Our Beans
+          WOLF COFFEE
         </h2>
         <p className="mt-3 text-sm text-[var(--color-muted)] font-[family-name:var(--font-display-ja)]">
           深く、力強く、野性の一杯を

@@ -124,7 +124,7 @@ export function HerbTea() {
             Herb Tea
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.5rem)] font-light leading-tight italic">
-            Wild Herbs
+            WOLF HERBS
           </h2>
           <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.2em] font-[family-name:var(--font-display-ja)]">
             自然が宿す、野生のハーブティー

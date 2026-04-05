@@ -9,18 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const infoItems = [
   {
     label: "Address",
-    labelJa: "住所",
+    labelJa: "所在地",
     content: "東京都渋谷区神南1-2-3 WOLF DRIP BLDG. 1F",
-  },
-  {
-    label: "Hours",
-    labelJa: "営業時間",
-    content: "Mon – Fri: 8:00 – 20:00 / Sat – Sun: 9:00 – 21:00",
-  },
-  {
-    label: "Closed",
-    labelJa: "定休日",
-    content: "不定休",
   },
   {
     label: "Phone",
@@ -125,34 +115,16 @@ export function Location() {
 
         {/* Right: Map placeholder */}
         <div ref={rightRef} className="sticky top-32">
-          <div className="aspect-[4/3] rounded-2xl bg-neutral-900 border border-[var(--color-border)] flex items-center justify-center overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/50 to-neutral-900" />
-            <div className="relative flex flex-col items-center gap-4">
-              <div className="w-12 h-12 rounded-full border border-[var(--color-accent)]/30 flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-[var(--color-accent)]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <span className="text-[var(--color-muted)] text-sm tracking-widest uppercase">
-                Map
-              </span>
-            </div>
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--color-border)]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.169!2d139.6989!3d35.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca7bfe1b06d%3A0x4f0a5e6e3e8e0e0!2z5riL6LC36aeF!5e0!3m2!1sja!2sjp!4v1700000000000"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
           <div className="mt-6 p-6 rounded-xl bg-neutral-900/50 border border-[var(--color-border)]">

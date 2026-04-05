@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const conceptLines = [
-  { en: "Born from the Wild", ja: "野生から生まれた" },
-  { en: "Crafted with Instinct", ja: "本能で淹れる" },
-  { en: "Savored with Soul", ja: "魂で味わう" },
+  "Born from the Wild",
+  "Unmatched Quality Service",
+  "Special Drip Delivered to You",
 ];
 
 export function Concept() {
@@ -106,10 +106,7 @@ export function Concept() {
               className="flex flex-col items-center gap-2"
             >
               <span className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,4rem)] font-bold leading-none">
-                {line.en}
-              </span>
-              <span className="text-[var(--color-muted)] text-sm tracking-widest font-[family-name:var(--font-display-ja)]">
-                {line.ja}
+                {line}
               </span>
             </div>
           ))}
@@ -119,11 +116,9 @@ export function Concept() {
           ref={bodyRef}
           className="text-[var(--color-muted)] text-sm leading-[2] max-w-2xl text-center font-[family-name:var(--font-body-ja)]"
         >
-          WOLF DRIPは、飼い慣らされた日常から解き放たれる一杯を届ける
-          スペシャルティコーヒー＆ハーブティースタンド。
-          世界各地から厳選した豆と、自然の力を宿すハーブを、
-          野性的な直感と職人の技で一杯に仕上げる。
-          ここにあるのは、型にはまらない自由な味わい。
+          WOLF DRIPは高品質なサービスと特別な一杯をお届けします。
+          コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。
+          ここにあるのは型にハマらない自由な味わい。
         </p>
       </div>
     </section>
