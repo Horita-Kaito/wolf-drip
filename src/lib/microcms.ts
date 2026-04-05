@@ -1,0 +1,23 @@
+import { createClient } from "microcms-js-sdk";
+import type { MicroCMSListContent, MicroCMSQueries } from "microcms-js-sdk";
+
+export const client = createClient({
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
+  apiKey: process.env.MICROCMS_API_KEY!,
+});
+
+// お知らせの型定義
+export type News = {
+  date: string;
+  category: string;
+  title: string;
+  description: string;
+} & MicroCMSListContent;
+
+// お知らせ一覧取得
+export async function getNewsList(queries?: MicroCMSQueries) {
+  return client.getList<News>({
+    endpoint: "news",
+    queries: { orders: "-date", limit: 10, ...queries },
+  });
+}

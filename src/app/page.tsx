@@ -6,8 +6,22 @@ import { Location } from "@/components/Location";
 import { News } from "@/components/News";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { getNewsList } from "@/lib/microcms";
 
-export default function Home() {
+export default async function Home() {
+  const { contents: newsItems } = await getNewsList();
+
+  const items = newsItems.map((item) => ({
+    date: new Date(item.date).toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).replaceAll("/", "."),
+    category: item.category,
+    title: item.title,
+    description: item.description,
+  }));
+
   return (
     <main className="overflow-x-hidden">
       <Hero />
@@ -15,7 +29,7 @@ export default function Home() {
       <Coffee />
       <HerbTea />
       <Location />
-      <News />
+      <News items={items} />
       <Contact />
       <Footer />
     </main>

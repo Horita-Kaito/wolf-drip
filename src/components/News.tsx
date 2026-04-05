@@ -6,38 +6,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const newsItems = [
-  {
-    date: "2026.03.15",
-    category: "Event",
-    title: "Spring Tasting Event — 春のテイスティングイベント開催",
-    description:
-      "3月末に春の新豆テイスティングイベントを開催します。エチオピアとケニアの新ロットをお楽しみください。",
-  },
-  {
-    date: "2026.03.01",
-    category: "New Menu",
-    title: "Twilight Hibiscus — 新作ハーブティー登場",
-    description:
-      "鮮やかなルビー色のハイビスカスティーが新メニューに加わりました。春の訪れとともにお楽しみください。",
-  },
-  {
-    date: "2026.02.14",
-    category: "Info",
-    title: "営業時間変更のお知らせ",
-    description:
-      "3月より土日の営業時間を9:00〜21:00に延長いたします。週末もゆっくりお過ごしください。",
-  },
-  {
-    date: "2026.01.20",
-    category: "Feature",
-    title: "BRUTUS Magazine 掲載",
-    description:
-      "BRUTUS最新号「東京のコーヒー最前線」特集にてWOLF DRIPが紹介されました。",
-  },
-];
+type NewsItem = {
+  date: string;
+  category: string;
+  title: string;
+  description: string;
+};
 
-export function News() {
+type Props = {
+  items: NewsItem[];
+};
+
+export function News({ items }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
@@ -97,7 +77,7 @@ export function News() {
 
         {/* News list */}
         <div className="max-w-4xl mx-auto">
-          {newsItems.map((item, i) => (
+          {items.map((item, i) => (
             <div
               key={i}
               ref={(el) => {
