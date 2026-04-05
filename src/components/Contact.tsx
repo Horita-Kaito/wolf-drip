@@ -140,35 +140,6 @@ export function Contact() {
           </div>
         </form>
 
-        {/* Alternative contact info */}
-        <div className="mt-20 pt-12 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-center items-center gap-10 text-center">
-          <div>
-            <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
-              Email
-            </p>
-            <p className="text-base font-[family-name:var(--font-body)]">
-              info@wolfdrip.coffee
-            </p>
-          </div>
-          <div className="hidden md:block w-px h-10 bg-[var(--color-border)]" />
-          <div>
-            <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
-              Phone
-            </p>
-            <p className="text-base font-[family-name:var(--font-body)]">
-              03-1234-5678
-            </p>
-          </div>
-          <div className="hidden md:block w-px h-10 bg-[var(--color-border)]" />
-          <div>
-            <p className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase mb-2 font-[family-name:var(--font-body)]">
-              Instagram
-            </p>
-            <p className="text-base font-[family-name:var(--font-body)]">
-              @wolfdrip
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
