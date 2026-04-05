@@ -11,7 +11,7 @@ export type News = {
   date: string;
   category: string;
   title: string;
-  description: string;
+  description: string; // リッチエディタ（HTML）
 } & MicroCMSListContent;
 
 // お知らせ一覧取得
@@ -19,5 +19,14 @@ export async function getNewsList(queries?: MicroCMSQueries) {
   return client.getList<News>({
     endpoint: "news",
     queries: { orders: "-date", limit: 10, ...queries },
+  });
+}
+
+// お知らせ詳細取得
+export async function getNewsDetail(contentId: string, queries?: MicroCMSQueries) {
+  return client.getListDetail<News>({
+    endpoint: "news",
+    contentId,
+    queries,
   });
 }

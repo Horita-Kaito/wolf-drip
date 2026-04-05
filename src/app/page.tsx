@@ -12,6 +12,7 @@ export default async function Home() {
   const { contents: newsItems } = await getNewsList();
 
   const items = newsItems.map((item) => ({
+    id: item.id,
     date: new Date(item.date).toLocaleDateString("ja-JP", {
       year: "numeric",
       month: "2-digit",
@@ -19,7 +20,6 @@ export default async function Home() {
     }).replaceAll("/", "."),
     category: item.category,
     title: item.title,
-    description: item.description,
   }));
 
   return (

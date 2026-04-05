@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type NewsItem = {
+  id: string;
   date: string;
   category: string;
   title: string;
-  description: string;
 };
 
 type Props = {
@@ -78,12 +79,13 @@ export function News({ items }: Props) {
         {/* News list */}
         <div className="max-w-4xl mx-auto">
           {items.map((item, i) => (
-            <div
-              key={i}
+            <Link
+              key={item.id}
+              href={`/news/${item.id}`}
               ref={(el) => {
                 if (el) itemsRef.current[i] = el;
               }}
-              className="group border-b border-[var(--color-border)] py-8 cursor-pointer hover:border-[var(--color-accent)]/30 transition-colors duration-500"
+              className="group block border-b border-[var(--color-border)] py-8 hover:border-[var(--color-accent)]/30 transition-colors duration-500"
             >
               <div className="flex items-start gap-6 md:gap-10">
                 {/* Date */}
@@ -100,12 +102,9 @@ export function News({ items }: Props) {
                       {item.category}
                     </span>
                   </div>
-                  <h3 className="text-base font-[family-name:var(--font-body-ja)] mb-2 group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <h3 className="text-base font-[family-name:var(--font-body-ja)] group-hover:text-[var(--color-accent)] transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[var(--color-muted)] leading-relaxed font-[family-name:var(--font-body-ja)]">
-                    {item.description}
-                  </p>
                 </div>
 
                 {/* Arrow */}
@@ -125,7 +124,7 @@ export function News({ items }: Props) {
                   </svg>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
