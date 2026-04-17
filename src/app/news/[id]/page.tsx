@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getNewsDetail, getNewsList } from "@/lib/microcms";
 import { notFound } from "next/navigation";
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const { contents } = await getNewsList({ fields: "id" });
   return contents.map((item) => ({ id: item.id }));

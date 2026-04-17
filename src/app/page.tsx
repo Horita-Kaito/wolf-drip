@@ -8,13 +8,13 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { getNewsList, getMenuList } from "@/lib/microcms";
 
+export const revalidate = 60;
+
 export default async function Home() {
   const [{ contents: newsItems }, { contents: menuItems }] = await Promise.all([
     getNewsList(),
     getMenuList(),
   ]);
-
-  console.log("menuItems:", JSON.stringify(menuItems, null, 2));
 
   const newsData = newsItems.map((item) => ({
     id: item.id,
@@ -53,8 +53,8 @@ export default async function Home() {
     <main className="overflow-x-hidden">
       <Hero />
       <Concept />
-      <Coffee items={coffeeData} />
       <HerbTea items={herbTeaData} />
+      <Coffee items={coffeeData} />
       <Location />
       <News items={newsData} />
       <Contact />
