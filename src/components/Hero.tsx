@@ -3,14 +3,13 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { WolfDripLogo } from "./WolfDripLogo";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const wolfRef = useRef<HTMLSpanElement>(null);
-  const dripRef = useRef<HTMLSpanElement>(null);
+  const logoRef = useRef<SVGSVGElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const taglineJaRef = useRef<HTMLParagraphElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -18,45 +17,29 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // DRIP: droplet-like fall animation
-      const dripChars = dripRef.current?.querySelectorAll(".char");
-      if (dripChars) {
-        dripChars.forEach((char, i) => {
-          const tl = gsap.timeline({ delay: 0.8 + i * 0.15 });
+      // WOLF: rise + fade in as one block
+      const wolfGroup = logoRef.current?.querySelector<SVGGElement>("#WOLF");
+      if (wolfGroup) {
+        gsap.from(wolfGroup, {
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.3,
+        });
+      }
 
-          // Start: small droplet forming at the top
-          gsap.set(char, {
-            y: -180,
-            opacity: 0,
-            scaleX: 0.6,
-            scaleY: 1.4,
-          });
-
-          // Phase 1: droplet falls with gravity
-          tl.to(char, {
-            opacity: 1,
-            y: 0,
-            scaleX: 0.7,
-            scaleY: 1.3,
-            duration: 0.6,
-            ease: "power3.in",
-          });
-
-          // Phase 3: splash - squash on landing
-          tl.to(char, {
-            scaleX: 1.3,
-            scaleY: 0.7,
-            duration: 0.1,
-            ease: "power2.out",
-          });
-
-          // Phase 4: settle back to normal shape
-          tl.to(char, {
-            scaleX: 1,
-            scaleY: 1,
-            duration: 0.4,
-            ease: "elastic.out(1, 0.4)",
-          });
+      // DRIP: each letter drops in from above, staggered
+      const dripLetters =
+        logoRef.current?.querySelectorAll<SVGGElement>("#DRIP .letter");
+      if (dripLetters) {
+        gsap.from(dripLetters, {
+          y: -60,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          delay: 1.0,
         });
       }
 
@@ -66,7 +49,7 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 1.8,
+        delay: 1.9,
       });
 
       // Japanese tagline fade in
@@ -75,14 +58,14 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 2.1,
+        delay: 2.2,
       });
 
       // Scroll indicator fade in
       gsap.from(scrollIndicatorRef.current, {
         opacity: 0,
         duration: 1,
-        delay: 2.6,
+        delay: 2.7,
       });
 
       // Parallax on scroll
@@ -111,8 +94,6 @@ export function Hero() {
     return () => ctx.revert();
   }, []);
 
-  const title = "WOLF DRIP";
-
   return (
     <section
       ref={sectionRef}
@@ -128,35 +109,10 @@ export function Hero() {
       <div className="absolute inset-8 border border-white/10 pointer-events-none" />
 
       <div className="relative z-10 text-center px-4">
-        <h1
-          ref={titleRef}
-          className="font-[family-name:var(--font-display)] text-[clamp(3rem,12vw,12rem)] font-bold leading-none tracking-tighter"
-          style={{ perspective: "600px" }}
-        >
-          <span ref={wolfRef}>
-            {"WOLF".split("").map((char, i) => (
-              <span
-                key={i}
-                className="char inline-block"
-                style={{ transformOrigin: "bottom" }}
-              >
-                {char}
-              </span>
-            ))}
-          </span>
-          {"\u00A0"}
-          <span ref={dripRef}>
-            {"DRIP".split("").map((char, i) => (
-              <span
-                key={i}
-                className="char inline-block"
-                style={{ transformOrigin: "top" }}
-              >
-                {char}
-              </span>
-            ))}
-          </span>
-        </h1>
+        <WolfDripLogo
+          ref={logoRef}
+          className="w-[min(70vw,56rem)] text-white"
+        />
 
         <p
           ref={taglineRef}
