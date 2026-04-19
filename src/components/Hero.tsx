@@ -29,17 +29,31 @@ export function Hero() {
         });
       }
 
-      // DRIP: each letter drops from above the viewport, staggered
+      // DRIP: each letter drops from the top edge and lands with a subtle squash
       const dripLetters =
         logoRef.current?.querySelectorAll<SVGGElement>("#DRIP .letter");
       if (dripLetters) {
-        gsap.from(dripLetters, {
-          y: -window.innerHeight * 2.5,
-          opacity: 0,
-          duration: 1.4,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay: 1.0,
+        dripLetters.forEach((letter, i) => {
+          const tl = gsap.timeline({ delay: 1.0 + i * 0.12 });
+          tl.from(letter, {
+            y: -window.innerHeight * 0.7,
+            opacity: 0,
+            duration: 0.85,
+            ease: "power2.in",
+          })
+            .to(letter, {
+              scaleY: 0.8,
+              scaleX: 1.14,
+              transformOrigin: "50% 100%",
+              duration: 0.1,
+              ease: "power2.out",
+            })
+            .to(letter, {
+              scaleY: 1,
+              scaleX: 1,
+              duration: 0.55,
+              ease: "elastic.out(1.1, 0.4)",
+            });
         });
       }
 
@@ -49,7 +63,7 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 2.6,
+        delay: 2.9,
       });
 
       // Japanese tagline fade in
@@ -58,14 +72,14 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 2.9,
+        delay: 3.2,
       });
 
       // Scroll indicator fade in
       gsap.from(scrollIndicatorRef.current, {
         opacity: 0,
         duration: 1,
-        delay: 3.4,
+        delay: 3.7,
       });
 
       // Parallax on scroll

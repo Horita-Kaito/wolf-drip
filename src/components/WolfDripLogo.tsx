@@ -15,6 +15,7 @@ export const WolfDripLogo = forwardRef<SVGSVGElement, Props>(
         aria-label="WOLF DRIP"
         role="img"
         className={className}
+        style={{ overflow: "visible" }}
       >
         <g id="WOLF">
           <g className="letter" id="letter-w">
