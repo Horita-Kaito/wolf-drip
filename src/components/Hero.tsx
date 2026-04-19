@@ -29,27 +29,27 @@ export function Hero() {
         });
       }
 
-      // DRIP: each letter drops in from above, staggered
+      // DRIP: each letter drops from above the viewport, staggered
       const dripLetters =
         logoRef.current?.querySelectorAll<SVGGElement>("#DRIP .letter");
       if (dripLetters) {
         gsap.from(dripLetters, {
-          y: -60,
+          y: -window.innerHeight * 2.5,
           opacity: 0,
-          duration: 0.7,
+          duration: 1.4,
           ease: "power3.out",
-          stagger: 0.08,
+          stagger: 0.1,
           delay: 1.0,
         });
       }
 
-      // Tagline fade in
+      // Tagline fade in (after DRIP lands)
       gsap.from(taglineRef.current, {
         y: 30,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 1.9,
+        delay: 2.6,
       });
 
       // Japanese tagline fade in
@@ -58,14 +58,14 @@ export function Hero() {
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        delay: 2.2,
+        delay: 2.9,
       });
 
       // Scroll indicator fade in
       gsap.from(scrollIndicatorRef.current, {
         opacity: 0,
         duration: 1,
-        delay: 2.7,
+        delay: 3.4,
       });
 
       // Parallax on scroll
