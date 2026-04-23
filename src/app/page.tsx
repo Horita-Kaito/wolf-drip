@@ -52,8 +52,8 @@ export default async function Home() {
     <main className="overflow-x-hidden">
       <Hero />
       <Concept />
-      <HerbTea items={herbTeaData} />
       <Coffee items={coffeeData} />
+      <HerbTea items={herbTeaData} />
       <News items={newsData} />
       <Contact />
       <Footer />
