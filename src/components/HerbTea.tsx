@@ -85,7 +85,7 @@ export function HerbTea({ items }: Props) {
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-herb-dark)]/[0.07] leading-none whitespace-nowrap italic">
+        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-herb-dark)]/[0.1] leading-none whitespace-nowrap italic">
           HERBS
         </span>
       </div>

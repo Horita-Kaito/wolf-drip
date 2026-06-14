@@ -85,7 +85,7 @@ export function Coffee({ items }: Props) {
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-accent-dark)]/[0.06] leading-none whitespace-nowrap">
+        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-accent-dark)]/[0.09] leading-none whitespace-nowrap">
           COFFEE
         </span>
       </div>
