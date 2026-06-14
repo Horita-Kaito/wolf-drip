@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const conceptLines = [
-  "Born from the Wild",
+  "Primitive by Nature",
   "Unmatched Quality Service",
   "Special Drip Delivered to You",
 ];
@@ -118,7 +118,7 @@ export function Concept() {
         >
           WOLF DRIPは高品質なサービスと特別な一杯をお届けします。
           コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。
-          ここにあるのは型にハマらない自由な味わい。
+          ここにあるのは本能に触れるプリミティブな味わい。
         </p>
       </div>
     </section>

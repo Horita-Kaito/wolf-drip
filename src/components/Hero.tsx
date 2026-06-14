@@ -147,7 +147,7 @@ export function Hero() {
           ref={taglineJaRef}
           className="mt-3 text-xs tracking-[0.3em] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]"
         >
-          野性の一杯を、あなたに
+          プリミティブな一杯を、あなたに
         </p>
 
         <div ref={scrollIndicatorRef} className="mt-20">
