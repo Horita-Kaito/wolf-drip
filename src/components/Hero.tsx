@@ -114,8 +114,16 @@ export function Hero() {
       id="top"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background image placeholder */}
-      <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center bg-no-repeat" />
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
       <div className="absolute inset-0 bg-black/50" />
       <div ref={overlayRef} className="absolute inset-0 bg-black/40 opacity-0" />
 
