@@ -85,14 +85,14 @@ export function Coffee({ items }: Props) {
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-white/[0.02] leading-none whitespace-nowrap">
+        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-accent-dark)]/[0.06] leading-none whitespace-nowrap">
           COFFEE
         </span>
       </div>
 
       {/* Section heading - centered at top */}
       <div ref={headingRef} className="absolute top-10 left-0 right-0 z-10 text-center">
-        <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase font-[family-name:var(--font-body)] mb-3">
+        <p className="text-[var(--color-accent-dark)] text-sm tracking-[0.3em] uppercase font-[family-name:var(--font-body)] mb-3">
           Coffee
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.9]">
@@ -114,7 +114,7 @@ export function Coffee({ items }: Props) {
             className="coffee-card group flex-shrink-0 w-[400px] h-[65vh] relative overflow-hidden cursor-pointer"
           >
             {/* Image area */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1a1208] to-[#0d0a05] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent-dark)] to-[var(--color-overlay)] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
             {item.image ? (
               <Image
                 src={item.image}
@@ -135,14 +135,14 @@ export function Coffee({ items }: Props) {
             </div>
 
             {/* Bottom: Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/70 to-transparent pt-24">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[var(--color-overlay)] via-[var(--color-overlay)]/75 to-transparent pt-24 text-[var(--color-fg-inverse)]">
               <p className="text-[var(--color-accent)] text-[10px] tracking-[0.25em] uppercase mb-3 font-[family-name:var(--font-body)]">
                 {item.flavor}
               </p>
               <h3 className="font-[family-name:var(--font-display)] text-[1.75rem] font-bold leading-tight mb-2">
                 {item.name}
               </h3>
-              <p className="text-xs text-[var(--color-muted)] leading-relaxed mb-4 font-[family-name:var(--font-body-ja)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-20 overflow-hidden">
+              <p className="text-xs text-[var(--color-muted-inverse)] leading-relaxed mb-4 font-[family-name:var(--font-body-ja)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-20 overflow-hidden">
                 {item.description}
               </p>
               <div className="flex items-center justify-between">
@@ -151,7 +151,7 @@ export function Coffee({ items }: Props) {
                     {item.price}
                   </span>
                 )}
-                <span className="text-[10px] tracking-widest text-[var(--color-muted)] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="text-[10px] tracking-widest text-[var(--color-muted-inverse)] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   View →
                 </span>
               </div>

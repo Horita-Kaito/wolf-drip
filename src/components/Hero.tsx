@@ -124,38 +124,38 @@ export function Hero() {
         playsInline
         preload="auto"
       />
-      <div className="absolute inset-0 bg-black/50" />
-      <div ref={overlayRef} className="absolute inset-0 bg-black/40 opacity-0" />
+      <div className="absolute inset-0 bg-[var(--color-overlay)]/45" />
+      <div ref={overlayRef} className="absolute inset-0 bg-[var(--color-overlay)]/45 opacity-0" />
 
       {/* Decorative border frame */}
-      <div className="absolute inset-8 border border-white/10 pointer-events-none" />
+      <div className="absolute inset-8 border border-[var(--color-fg-inverse)]/20 pointer-events-none" />
 
       <div className="relative z-10 text-center px-4">
         <WolfDripLogo
           ref={logoRef}
-          className="w-[min(70vw,56rem)] text-white"
+          className="w-[min(70vw,56rem)] text-[var(--color-fg-inverse)]"
         />
 
         <p
           ref={taglineRef}
-          className="mt-6 text-sm tracking-[0.4em] uppercase text-[var(--color-accent)] font-[family-name:var(--font-body)]"
+          className="mt-6 text-sm tracking-[0.4em] uppercase text-[var(--color-gold)] font-[family-name:var(--font-body)]"
         >
           Specialty Coffee &amp; Herb Tea
         </p>
 
         <p
           ref={taglineJaRef}
-          className="mt-3 text-xs tracking-[0.3em] text-[var(--color-muted)] font-[family-name:var(--font-body-ja)]"
+          className="mt-3 text-xs tracking-[0.3em] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]"
         >
           野性の一杯を、あなたに
         </p>
 
         <div ref={scrollIndicatorRef} className="mt-20">
           <div className="flex flex-col items-center gap-3">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[var(--color-muted)]">
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[var(--color-muted-inverse)]">
               Scroll
             </span>
-            <div className="w-px h-12 bg-gradient-to-b from-[var(--color-accent)] to-transparent animate-pulse" />
+            <div className="w-px h-12 bg-gradient-to-b from-[var(--color-gold)] to-transparent animate-pulse" />
           </div>
         </div>
       </div>

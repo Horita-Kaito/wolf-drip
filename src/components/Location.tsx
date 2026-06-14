@@ -78,7 +78,7 @@ export function Location() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         {/* Left: Info */}
         <div ref={leftRef}>
-          <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
+          <p className="text-[var(--color-olive)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             Location
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold mb-4 leading-none">
@@ -98,7 +98,7 @@ export function Location() {
                 className="border-b border-[var(--color-border)] pb-6"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <h4 className="text-[var(--color-accent)] text-xs tracking-[0.2em] uppercase font-[family-name:var(--font-body)]">
+                  <h4 className="text-[var(--color-olive)] text-xs tracking-[0.2em] uppercase font-[family-name:var(--font-body)]">
                     {item.label}
                   </h4>
                   <span className="text-[var(--color-muted)] text-[10px] font-[family-name:var(--font-body-ja)]">
@@ -127,7 +127,7 @@ export function Location() {
             />
           </div>
 
-          <div className="mt-6 p-6 rounded-xl bg-neutral-900/50 border border-[var(--color-border)]">
+          <div className="mt-6 p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]">
             <p className="text-sm text-[var(--color-muted)] leading-relaxed font-[family-name:var(--font-body-ja)]">
               渋谷駅ハチ公口より徒歩5分。
               神南エリアの路地裏、緑に囲まれた隠れ家的空間。

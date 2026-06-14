@@ -60,12 +60,12 @@ export function News({ items }: Props) {
     <section
       ref={sectionRef}
       id="news"
-      className="py-32 px-8 bg-[var(--color-bg)]"
+      className="py-32 px-8 bg-[var(--color-bg-news)]"
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div ref={headingRef} className="mb-16 text-center">
-          <p className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
+          <p className="text-[var(--color-gold)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             News
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none">
@@ -85,7 +85,7 @@ export function News({ items }: Props) {
               ref={(el) => {
                 if (el) itemsRef.current[i] = el;
               }}
-              className="group block border-b border-[var(--color-border)] py-8 hover:border-[var(--color-accent)]/30 transition-colors duration-500"
+              className="group block border-b border-[var(--color-border)] py-8 hover:border-[var(--color-gold)]/50 transition-colors duration-500"
             >
               <div className="flex items-start gap-6 md:gap-10">
                 {/* Date */}
@@ -98,11 +98,11 @@ export function News({ items }: Props) {
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 border border-[var(--color-accent)]/30 text-[var(--color-accent)] rounded font-[family-name:var(--font-body)]">
+                    <span className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 border border-[var(--color-gold)]/50 text-[var(--color-accent-dark)] rounded font-[family-name:var(--font-body)]">
                       {item.category}
                     </span>
                   </div>
-                  <h3 className="text-base font-[family-name:var(--font-body-ja)] group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <h3 className="text-base font-[family-name:var(--font-body-ja)] group-hover:text-[var(--color-accent-dark)] transition-colors duration-300">
                     {item.title}
                   </h3>
                 </div>
@@ -110,7 +110,7 @@ export function News({ items }: Props) {
                 {/* Arrow */}
                 <div className="flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg
-                    className="w-4 h-4 text-[var(--color-accent)]"
+                    className="w-4 h-4 text-[var(--color-gold)]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

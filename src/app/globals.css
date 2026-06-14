@@ -1,16 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #0a0a0a;
-  --color-fg: #ededed;
-  --color-accent: #c8a97e;
-  --color-accent-dark: #a68a5b;
-  --color-muted: #666666;
-  --color-herb: #8a9a7b;
-  --color-herb-dark: #6b7a5e;
-  --color-bg-coffee: #080604;
-  --color-bg-herb: #0a0d0a;
-  --color-border: #1f1f1f;
+  --color-bg: #f5efe7;
+  --color-bg-soft: #fbf7f0;
+  --color-fg: #2a211c;
+  --color-fg-inverse: #fff8ee;
+  --color-brand: #bb9166;
+  --color-accent: #bb9166;
+  --color-accent-dark: #7a5235;
+  --color-accent-soft: #e2c8ad;
+  --color-gold: #c4a24d;
+  --color-clay: #b4684f;
+  --color-sage: #7f8d72;
+  --color-olive: #4f5a3e;
+  --color-muted: #5d5047;
+  --color-muted-inverse: #d8c9ba;
+  --color-herb: var(--color-sage);
+  --color-herb-dark: var(--color-olive);
+  --color-bg-coffee: #eee0cd;
+  --color-bg-herb: #e7ecdf;
+  --color-bg-news: #f7f1e5;
+  --color-bg-contact: #f1e8dc;
+  --color-surface: #fffaf3;
+  --color-surface-strong: #efe2d2;
+  --color-border: #cbb7a3;
+  --color-overlay: #2a211c;
+  --color-placeholder: #8c7c6e;
 }
 
 @layer base {
@@ -34,7 +49,7 @@
 
 ::selection {
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-fg-inverse);
 }
 
 /* Smooth scrollbar */

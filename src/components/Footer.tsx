@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="py-12 px-8 border-t border-[var(--color-border)]">
+    <footer className="py-12 px-8 border-t border-[var(--color-border)] bg-[var(--color-bg-soft)]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <p className="font-[family-name:var(--font-display)] text-2xl font-bold">
           WOLF DRIP
@@ -10,7 +10,7 @@ export function Footer() {
           href="https://www.instagram.com/wolfdrip2026?igsh=YjdmYTc2bW04bWYy"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-300"
+          className="text-[var(--color-muted)] hover:text-[var(--color-clay)] transition-colors duration-300"
           aria-label="Instagram"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

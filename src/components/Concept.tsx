@@ -86,14 +86,14 @@ export function Concept() {
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         <p
           ref={headingRef}
-          className="text-[var(--color-accent)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]"
+          className="text-[var(--color-accent-dark)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]"
         >
           Concept
         </p>
 
         <div
           ref={dividerRef}
-          className="w-16 h-px bg-[var(--color-accent)] mb-16 origin-center"
+          className="w-16 h-px bg-[var(--color-gold)] mb-16 origin-center"
         />
 
         <div className="flex flex-col items-center gap-10 mb-16">

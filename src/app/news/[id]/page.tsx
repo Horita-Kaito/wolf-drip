@@ -58,7 +58,7 @@ export default async function NewsDetailPage({ params }: Props) {
         {/* Back link */}
         <Link
           href="/#news"
-          className="inline-flex items-center gap-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-300 mb-12 font-[family-name:var(--font-body)]"
+          className="inline-flex items-center gap-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-gold)] transition-colors duration-300 mb-12 font-[family-name:var(--font-body)]"
         >
           <svg
             className="w-4 h-4"
@@ -82,7 +82,7 @@ export default async function NewsDetailPage({ params }: Props) {
             <span className="text-sm text-[var(--color-muted)] font-[family-name:var(--font-body)] tabular-nums">
               {date}
             </span>
-            <span className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 border border-[var(--color-accent)]/30 text-[var(--color-accent)] rounded font-[family-name:var(--font-body)]">
+            <span className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 border border-[var(--color-gold)]/50 text-[var(--color-accent-dark)] rounded font-[family-name:var(--font-body)]">
               {article.category}
             </span>
           </div>
@@ -104,7 +104,7 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="mt-20 pt-8 border-t border-[var(--color-border)]">
           <Link
             href="/#news"
-            className="inline-flex items-center gap-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors duration-300 font-[family-name:var(--font-body)]"
+            className="inline-flex items-center gap-2 text-sm text-[var(--color-muted)] hover:text-[var(--color-gold)] transition-colors duration-300 font-[family-name:var(--font-body)]"
           >
             <svg
               className="w-4 h-4"
