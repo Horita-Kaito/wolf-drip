@@ -11,14 +11,14 @@
   --color-accent-soft: #e2c8ad;
   --color-gold: #c4a24d;
   --color-clay: #b4684f;
-  --color-sage: #7f8d72;
-  --color-olive: #4f5a3e;
+  --color-sage: #8f875f;
+  --color-olive: #5f5434;
   --color-muted: #5d5047;
   --color-muted-inverse: #d8c9ba;
   --color-herb: var(--color-sage);
   --color-herb-dark: var(--color-olive);
   --color-bg-coffee: #eee0cd;
-  --color-bg-herb: #e7ecdf;
+  --color-bg-herb: #ebe4cf;
   --color-bg-news: #f7f1e5;
   --color-bg-contact: #f1e8dc;
   --color-surface: #fffaf3;
