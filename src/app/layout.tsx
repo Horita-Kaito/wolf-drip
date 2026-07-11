@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s | WOLF DRIP",
   },
   description:
-    "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。言葉になる前の一杯を、そのまま差し出します。",
+    "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
   openGraph: {
     title: "WOLF DRIP — Specialty Coffee & Herb Tea",
     description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。言葉になる前の一杯を、そのまま差し出します。",
+      "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
     siteName: "WOLF DRIP",
     locale: "ja_JP",
     type: "website",
@@ -53,7 +53,7 @@ export default function RootLayout({
     name: "WOLF DRIP",
     url: siteUrl,
     description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド。言葉になる前の一杯を、そのまま差し出します。",
+      "スペシャルティコーヒーと国産ハーブティーのブランド。本能を刺激する一杯を届けます。",
     sameAs: ["https://www.instagram.com/wolfdrip2026"],
   };
 

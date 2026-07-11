@@ -29,31 +29,17 @@ export function Hero() {
         });
       }
 
-      // DRIP: each letter drops from the top edge and lands with a subtle squash
+      // DRIP: each letter settles down slowly like a falling drop
       const dripLetters =
         logoRef.current?.querySelectorAll<SVGGElement>("#DRIP .letter");
       if (dripLetters) {
-        dripLetters.forEach((letter, i) => {
-          const tl = gsap.timeline({ delay: 1.0 + i * 0.12 });
-          tl.from(letter, {
-            y: -window.innerHeight * 0.7,
-            opacity: 0,
-            duration: 0.85,
-            ease: "power2.in",
-          })
-            .to(letter, {
-              scaleY: 0.8,
-              scaleX: 1.14,
-              transformOrigin: "50% 100%",
-              duration: 0.1,
-              ease: "power2.out",
-            })
-            .to(letter, {
-              scaleY: 1,
-              scaleX: 1,
-              duration: 0.55,
-              ease: "elastic.out(1.1, 0.4)",
-            });
+        gsap.from(dripLetters, {
+          y: -80,
+          opacity: 0,
+          duration: 1.4,
+          ease: "power3.out",
+          stagger: 0.15,
+          delay: 1.0,
         });
       }
 
@@ -149,7 +135,7 @@ export function Hero() {
           ref={taglineJaRef}
           className="mt-3 text-sm tracking-[0.25em] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]"
         >
-          言葉になる前の、一杯を。
+          本能を刺激する味わい。
         </p>
 
         <div ref={scrollIndicatorRef} className="mt-20">

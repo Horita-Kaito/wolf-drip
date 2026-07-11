@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const conceptLines = [
-  "理屈より、先に。",
-  "舌と、鼻で選ぶ。",
-  "それが、プリミティブ。",
+  "Before Reason.",
+  "Tongue and Nose Decide.",
+  "This Is Primitive.",
 ];
 
 export function Concept() {
@@ -105,7 +105,7 @@ export function Concept() {
               }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="font-[family-name:var(--font-display-ja)] text-[clamp(1.6rem,3.5vw,3.25rem)] font-medium leading-none tracking-[0.1em]">
+              <span className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,4rem)] font-medium leading-none tracking-[0.05em]">
                 {line}
               </span>
             </div>
@@ -117,9 +117,12 @@ export function Concept() {
           className="text-[var(--color-muted)] text-sm leading-[2.2] max-w-2xl text-center font-[family-name:var(--font-body-ja)]"
         >
           WOLF DRIPは、スペシャルティコーヒーと国産ハーブティーのブランドです。
+          <br />
           香りが立ちのぼって、ひと口。うまいかどうかは、からだが先に知っている。
+          <br />
           だから私たちは、多くを語りません。
-          言葉になる前の一杯を、そのまま差し出します。
+          <br />
+          語るのは、一杯のほうです。
         </p>
       </div>
     </section>

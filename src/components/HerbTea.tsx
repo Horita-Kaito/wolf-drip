@@ -99,7 +99,7 @@ export function HerbTea({ items }: Props) {
           WOLF HERBS
         </h2>
         <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.1em] font-[family-name:var(--font-display-ja)]">
-          日本で育ったハーブを、そのまま一杯に。
+          自然が宿す、プリミティブなハーブティー
         </p>
       </div>
 

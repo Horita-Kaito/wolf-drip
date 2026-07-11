@@ -99,7 +99,7 @@ export function Coffee({ items }: Props) {
           WOLF COFFEE
         </h2>
         <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.1em] font-[family-name:var(--font-display-ja)]">
-          静かな顔をして、牙のある一杯。
+          深く、力強く、プリミティブな一杯を
         </p>
       </div>
 
