@@ -147,9 +147,9 @@ export function Hero() {
 
         <p
           ref={taglineJaRef}
-          className="mt-3 text-xs tracking-[0.3em] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]"
+          className="mt-3 text-sm tracking-[0.25em] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]"
         >
-          プリミティブな一杯を、あなたに
+          言葉になる前の、一杯を。
         </p>
 
         <div ref={scrollIndicatorRef} className="mt-20">

@@ -1,34 +1,23 @@
 import type { Metadata } from "next";
-import {
-  Cormorant_Garamond,
-  DM_Sans,
-  Shippori_Mincho,
-  Noto_Sans_JP,
-} from "next/font/google";
+import { EB_Garamond, Zen_Old_Mincho } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { siteUrl } from "@/lib/site";
 
-const cormorant = Cormorant_Garamond({
+const garamond = EB_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
   variable: "--font-display",
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const zenOldMincho = Zen_Old_Mincho({
   subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const shipporiMincho = Shippori_Mincho({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500"],
   variable: "--font-display-ja",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  variable: "--font-body-ja",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -38,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s | WOLF DRIP",
   },
   description:
-    "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
+    "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。言葉になる前の一杯を、そのまま差し出します。",
   openGraph: {
     title: "WOLF DRIP — Specialty Coffee & Herb Tea",
     description:
-      "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
+      "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。言葉になる前の一杯を、そのまま差し出します。",
     siteName: "WOLF DRIP",
     locale: "ja_JP",
     type: "website",
@@ -64,17 +53,13 @@ export default function RootLayout({
     name: "WOLF DRIP",
     url: siteUrl,
     description:
-      "WOLF DRIPは高品質なサービスと特別な一杯をお届けします。コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。",
-    sameAs: [
-      "https://www.instagram.com/wolfdrip2026",
-    ],
+      "スペシャルティコーヒーと国産ハーブティーのブランド。言葉になる前の一杯を、そのまま差し出します。",
+    sameAs: ["https://www.instagram.com/wolfdrip2026"],
   };
 
   return (
-    <html lang="ja">
-      <body
-        className={`${cormorant.variable} ${dmSans.variable} ${shipporiMincho.variable} ${notoSansJP.variable} antialiased`}
-      >
+    <html lang="ja" className={`${garamond.variable} ${zenOldMincho.variable}`}>
+      <body className="antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

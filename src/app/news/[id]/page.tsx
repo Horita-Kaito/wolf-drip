@@ -86,7 +86,7 @@ export default async function NewsDetailPage({ params }: Props) {
               {article.category}
             </span>
           </div>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,4vw,3rem)] font-bold leading-tight">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,4vw,3rem)] font-medium leading-tight">
             {article.title}
           </h1>
         </div>

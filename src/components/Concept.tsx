@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const conceptLines = [
-  "Primitive by Nature",
-  "Unmatched Quality Service",
-  "Special Drip Delivered to You",
+  "理屈より、先に。",
+  "舌と、鼻で選ぶ。",
+  "それが、プリミティブ。",
 ];
 
 export function Concept() {
@@ -105,7 +105,7 @@ export function Concept() {
               }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,4rem)] font-bold leading-none">
+              <span className="font-[family-name:var(--font-display-ja)] text-[clamp(1.6rem,3.5vw,3.25rem)] font-medium leading-none tracking-[0.1em]">
                 {line}
               </span>
             </div>
@@ -114,11 +114,12 @@ export function Concept() {
 
         <p
           ref={bodyRef}
-          className="text-[var(--color-muted)] text-sm leading-[2] max-w-2xl text-center font-[family-name:var(--font-body-ja)]"
+          className="text-[var(--color-muted)] text-sm leading-[2.2] max-w-2xl text-center font-[family-name:var(--font-body-ja)]"
         >
-          WOLF DRIPは高品質なサービスと特別な一杯をお届けします。
-          コロンビアを中心に厳選したコーヒーと国内産のハーブを使用したティー。
-          ここにあるのは本能に触れるプリミティブな味わい。
+          WOLF DRIPは、スペシャルティコーヒーと国産ハーブティーのブランドです。
+          香りが立ちのぼって、ひと口。うまいかどうかは、からだが先に知っている。
+          だから私たちは、多くを語りません。
+          言葉になる前の一杯を、そのまま差し出します。
         </p>
       </div>
     </section>

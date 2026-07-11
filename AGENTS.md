@@ -99,10 +99,10 @@ src/
   components/
     Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、背景動画 hero.mp4 + poster）
     WolfDripLogo.tsx  — WOLF DRIPロゴのSVGコンポーネント
-    Concept.tsx       — コンセプト3項目（英語のみ）
+    Concept.tsx       — コンセプト3項目（日本語の宣言コピー）
     Coffee.tsx        — コーヒーメニュー（横スクロール）
     HerbTea.tsx       — ハーブティーメニュー（横スクロール）
-    Location.tsx      — 所在地 + Google Maps iframe
+    Location.tsx      — 所在地（全てダミーデータ。実店舗確定までpage.tsxから非表示）
     News.tsx          — お知らせ一覧（microCMS連携）
     Contact.tsx       — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
     Footer.tsx        — フッター（Instagramアイコン）
@@ -153,6 +153,18 @@ Vercel側にも同じ環境変数の設定が必要。
 - **ドメイン**: 未決定
 
 ---
+
+## コピー・タイポグラフィ規範（2026-07 ブランド調査に基づく）
+
+### コピーの事実制約（最重要）
+- コピーに書いてよい事実は「国産ハーブ」「スペシャルティコーヒー」「卸は直接取引のみ」だけ
+- 以下は**事実でない**ので書かない: 農園所有、製造工程の詳細（非公開方針）、コロンビア産中心、実店舗の住所・電話（店舗は構想段階）
+- 戦略は「宣言と情景型」（猿田彦珈琲・KOFFEE MAMEYA型）: 工程で証明せず、短い断言と五感の描写で語る。抽象語（高品質・こだわり・上質）は単体で使わない
+
+### タイポグラフィ
+- 2書体システム: 欧文 EB Garamond / 和文 Zen Old Mincho（next/font/google、`--font-display` / `--font-display-ja`。`--font-body`系はglobals.cssでエイリアス）
+- font-weightは400/500のみ。**font-bold（700）禁止**（ハイブランド和文タイポの共通則）
+- 和文はletter-spacing 0.05em以上、本文line-height 2前後
 
 ## 開発ルール
 

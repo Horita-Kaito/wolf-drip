@@ -83,7 +83,7 @@ export function Location() {
           <p className="text-[var(--color-olive)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             Location
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold mb-4 leading-none">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-medium mb-4 leading-none">
             Visit Us
           </h2>
           <p className="text-[var(--color-muted)] text-sm tracking-widest mb-12 font-[family-name:var(--font-display-ja)]">

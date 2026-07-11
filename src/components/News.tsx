@@ -68,7 +68,7 @@ export function News({ items }: Props) {
           <p className="text-[var(--color-gold)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             News
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-medium leading-none">
             Latest
           </h2>
           <p className="mt-3 text-sm text-[var(--color-muted)] tracking-widest font-[family-name:var(--font-display-ja)]">

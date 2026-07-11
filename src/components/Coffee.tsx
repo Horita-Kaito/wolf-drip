@@ -85,7 +85,7 @@ export function Coffee({ items }: Props) {
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-accent-dark)]/[0.09] leading-none whitespace-nowrap">
+        <span className="font-[family-name:var(--font-display)] text-[20vw] font-medium text-[var(--color-accent-dark)]/[0.09] leading-none whitespace-nowrap">
           COFFEE
         </span>
       </div>
@@ -95,11 +95,11 @@ export function Coffee({ items }: Props) {
         <p className="text-[var(--color-accent-dark)] text-sm tracking-[0.3em] uppercase font-[family-name:var(--font-body)] mb-3">
           Coffee
         </p>
-        <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.9]">
+        <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-medium leading-[0.9] tracking-[0.06em]">
           WOLF COFFEE
         </h2>
-        <p className="mt-3 text-sm text-[var(--color-muted)] font-[family-name:var(--font-display-ja)]">
-          深く、力強く、プリミティブな一杯を
+        <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.1em] font-[family-name:var(--font-display-ja)]">
+          静かな顔をして、牙のある一杯。
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export function Coffee({ items }: Props) {
 
             {/* Top: Number */}
             <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start">
-              <span className="font-[family-name:var(--font-display)] text-[4rem] font-bold leading-none text-[var(--color-accent)]/[0.08]">
+              <span className="font-[family-name:var(--font-display)] text-[4rem] font-medium leading-none text-[var(--color-accent)]/[0.08]">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
@@ -137,7 +137,7 @@ export function Coffee({ items }: Props) {
               <p className="text-[var(--color-accent)] text-[10px] tracking-[0.25em] uppercase mb-3 font-[family-name:var(--font-body)]">
                 {item.flavor}
               </p>
-              <h3 className="font-[family-name:var(--font-display)] text-[1.75rem] font-bold leading-tight mb-2">
+              <h3 className="font-[family-name:var(--font-display)] text-[1.75rem] font-medium leading-tight mb-2">
                 {item.name}
               </h3>
               <p className="text-xs text-[var(--color-muted-inverse)] leading-relaxed mb-4 font-[family-name:var(--font-body-ja)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-20 overflow-hidden">

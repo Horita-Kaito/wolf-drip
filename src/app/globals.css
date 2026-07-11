@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 :root {
+  /* 2書体システム: 欧文 EB Garamond / 和文 Zen Old Mincho。
+     body系変数はdisplay系のエイリアス（サイト全体を同一スタックで統一） */
+  --font-body: var(--font-display);
+  --font-body-ja: var(--font-display-ja);
+
   --color-bg: #f5efe7;
   --color-bg-soft: #fbf7f0;
   --color-fg: #2a211c;
@@ -35,7 +40,9 @@
   }
 
   body {
-    font-family: var(--font-body), var(--font-body-ja), sans-serif;
+    /* 欧文を先に置き、英数字をGaramondで組む（和欧混植） */
+    font-family: var(--font-display), var(--font-display-ja), serif;
+    letter-spacing: 0.05em;
     overflow-x: hidden;
     width: 100%;
   }

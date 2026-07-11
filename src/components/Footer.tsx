@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="py-12 px-8 border-t border-[var(--color-border)] bg-[var(--color-bg-soft)]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <p className="font-[family-name:var(--font-display)] text-2xl font-bold">
+        <p className="font-[family-name:var(--font-display)] text-2xl font-medium">
           WOLF DRIP
         </p>
 

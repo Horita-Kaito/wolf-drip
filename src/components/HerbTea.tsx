@@ -85,7 +85,7 @@ export function HerbTea({ items }: Props) {
 
       {/* Large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-[family-name:var(--font-display)] text-[20vw] font-bold text-[var(--color-herb-dark)]/[0.1] leading-none whitespace-nowrap italic">
+        <span className="font-[family-name:var(--font-display)] text-[20vw] font-medium text-[var(--color-herb-dark)]/[0.1] leading-none whitespace-nowrap italic">
           HERBS
         </span>
       </div>
@@ -98,8 +98,8 @@ export function HerbTea({ items }: Props) {
         <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-light leading-[0.9] italic">
           WOLF HERBS
         </h2>
-        <p className="mt-3 text-sm text-[var(--color-muted)] font-[family-name:var(--font-display-ja)]">
-          自然が宿す、プリミティブなハーブティー
+        <p className="mt-3 text-sm text-[var(--color-muted)] tracking-[0.1em] font-[family-name:var(--font-display-ja)]">
+          日本で育ったハーブを、そのまま一杯に。
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export function HerbTea({ items }: Props) {
 
             {/* Top: Number */}
             <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start">
-              <span className="font-[family-name:var(--font-display)] text-[4rem] font-bold leading-none text-[var(--color-herb)]/[0.1]">
+              <span className="font-[family-name:var(--font-display)] text-[4rem] font-medium leading-none text-[var(--color-herb)]/[0.1]">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>

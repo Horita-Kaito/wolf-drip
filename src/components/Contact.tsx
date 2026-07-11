@@ -53,15 +53,17 @@ export function Contact() {
           <p className="text-[var(--color-clay)] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-body)]">
             Contact
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-bold leading-none mb-4">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,5rem)] font-medium leading-none mb-4">
             Get in Touch
           </h2>
           <p className="text-[var(--color-muted)] text-sm tracking-widest font-[family-name:var(--font-display-ja)]">
             お問い合わせ
           </p>
-          <p className="mt-8 text-[var(--color-muted)] text-base leading-relaxed max-w-xl mx-auto font-[family-name:var(--font-body-ja)]">
-            ご質問やお取引のご相談など、現在はInstagramのDMにて承っております。
-            お気軽にご連絡ください。
+          <p className="mt-8 text-[var(--color-muted)] text-base leading-[2.2] max-w-xl mx-auto font-[family-name:var(--font-body-ja)]">
+            WOLF DRIPの一杯を、あなたの店に。
+            卸販売は直接取引のみで承っています。
+            お取り扱いのご相談、取材、その他のお問い合わせは、
+            InstagramのDMにてお受けしています。
           </p>
         </div>
 
