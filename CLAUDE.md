@@ -97,7 +97,7 @@ src/
     sitemap.ts        — sitemap.xml自動生成（URLはlib/site.tsから取得）
     news/[id]/page.tsx — お知らせ詳細（generateMetadata対応）
   components/
-    Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、CSS多層グラデーション背景）
+    Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、背景動画 hero.mp4 + poster）
     WolfDripLogo.tsx  — WOLF DRIPロゴのSVGコンポーネント
     Concept.tsx       — コンセプト3項目（英語のみ）
     Coffee.tsx        — コーヒーメニュー（横スクロール）
@@ -149,7 +149,7 @@ Vercel側にも同じ環境変数の設定が必要。
 - **Laravelバックエンド**: お問い合わせ管理、Shopify連携、顧客管理。VPSに構築予定
 - **ステージング環境**: Vercel以外も検討中（Laravelと同一VPSでの運用など）
 - **favicon / OG画像**: ロゴデザイン確定待ち
-- **ヒーロー背景素材**: 現在はCSSグラデーション+グレイン（外部素材なし）。実写・動画素材が確定したら差し替え（動画の場合: クレジット表記のないライセンス素材、2〜3MB以内に圧縮、`poster`+`preload="metadata"`推奨）
+- **ヒーロー背景動画**: AI生成の仮素材（DeeVid AI製、クレジット・黒帯・音声トラックは除去済み、0.9MB）。正式素材が確定したら差し替え。差し替え時も同様に: クレジットなし、黒帯クロップ、音声除去、CRF28程度で1MB前後に圧縮、`poster`画像も再生成（ffmpeg: `crop`→`-crf 28 -an -movflags +faststart`）
 - **ドメイン**: 未決定
 
 ---
