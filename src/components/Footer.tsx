@@ -7,7 +7,7 @@ export function Footer() {
         </p>
 
         <a
-          href="https://www.instagram.com/wolfdrip2026?igsh=YjdmYTc2bW04bWYy"
+          href="https://www.instagram.com/wolfdrip2026"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[var(--color-muted)] hover:text-[var(--color-clay)] transition-colors duration-300"

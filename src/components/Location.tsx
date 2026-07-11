@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// 住所・電話・地図は全てダミーデータ。実店舗確定まではpage.tsxから非表示のままにし、
+// 再表示する前に必ず実データへ差し替えること
 const infoItems = [
   {
     label: "Address",

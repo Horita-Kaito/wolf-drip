@@ -114,17 +114,11 @@ export function Hero() {
       id="top"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-      />
-      <div className="absolute inset-0 bg-[var(--color-overlay)]/45" />
+      {/* Background: CSS-only layered gradients + grain（動画・外部素材なし） */}
+      <div className="absolute inset-0 bg-[var(--color-overlay)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_38%,rgba(187,145,102,0.28),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_50%_at_50%_115%,rgba(0,0,0,0.5),transparent)]" />
+      <div className="absolute inset-0 texture-grain opacity-[0.06]" />
       <div ref={overlayRef} className="absolute inset-0 bg-[var(--color-overlay)]/45 opacity-0" />
 
       {/* Decorative border frame */}

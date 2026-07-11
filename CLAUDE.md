@@ -94,20 +94,22 @@ src/
     page.tsx          — トップページ（データ取�� → 各セクションに配布）
     globals.css       — カラー変数、リッチエディタスタイル
     robots.ts         — robots.txt自動生成
-    sitemap.ts        — sitemap.xml自動生成（ドメイン決定後にURL差し替え）
+    sitemap.ts        — sitemap.xml自動生成（URLはlib/site.tsから取得）
     news/[id]/page.tsx — お知らせ詳細（generateMetadata対応）
   components/
-    Hero.tsx          — ヒーロー（DRIPしずく落下アニメーション）
+    Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、CSS多層グラデーション背景）
+    WolfDripLogo.tsx  — WOLF DRIPロゴのSVGコンポーネント
     Concept.tsx       — コンセプト3項目（英語のみ）
     Coffee.tsx        — コーヒーメニュー（横スクロール）
-    HerbTea.tsx       — ハーブティーメニュー（2カラムグリッド）
+    HerbTea.tsx       — ハーブティーメニュー（横スクロール）
     Location.tsx      — 所在地 + Google Maps iframe
     News.tsx          — お知らせ一覧（microCMS連携）
-    Contact.tsx       — お問い合わせフォーム（送信機能未実装）
+    Contact.tsx       — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
     Footer.tsx        — フッター（Instagramアイコン）
     SmoothScroll.tsx  — Lenisラッパー（ページ遷移時スクロールリセット）
   lib/
     microcms.ts       — microCMSクライアント + 型定義 + 取得関数
+    site.ts           — 正規URL（siteUrl）の単一ソース
 ```
 
 ---
@@ -117,7 +119,8 @@ src/
 | 変数名 | 用途 | 公開範囲 |
 |---|---|---|
 | `MICROCMS_SERVICE_DOMAIN` | microCMSサービスドメイン | サーバーのみ |
-| `MICROCMS_API_KEY` | microCMS APIキー | サーバーの��� |
+| `MICROCMS_API_KEY` | microCMS APIキー | サーバーのみ |
+| `SITE_URL` | 正規URL（sitemap / robots / metadataBase）。未設定時はVercel本番URL→localhostにフォールバック（`src/lib/site.ts`） | サーバーのみ |
 
 環境別テンプレート: `.env.local.example`, `.env.staging.example`, `.env.production.example`
 
@@ -130,22 +133,23 @@ Vercel側にも同じ環境変数の設定が必要。
 - [x] OGP / Twitter Card メタデータ
 - [x] title template（子ページ対応）
 - [x] お知らせ詳細の動的metadata (generateMetadata)
-- [x] robots.txt / sitemap.xml 自動生成
-- [x] 構造化データ（LocalBusiness JSON-LD）
+- [x] robots.txt / sitemap.xml 自動生成（URLは `src/lib/site.ts` の `siteUrl` に集約）
+- [x] 構造化データ（Organization JSON-LD。実店舗確定後にLocalBusinessへ拡張し住所・電話を実データで追加）
 - [x] next/image でmicroCMS画像最適化
 - [ ] favicon / OG画像（ロゴ未決定のため保留）
-- [ ] ドメイン設定後のURL確定（sitemap, canonical, OGP）
+- [ ] ドメイン決定後に `SITE_URL` 環境変数を設定（sitemap / canonical / OGPに自動反映）
 - [ ] Google Search Console 登録
 
 ---
 
 ## 未実装・TODO
 
-- **お問い合わせフォ���ム送信**: UIのみ実装済み。Laravel構築後に接続、またはformspree等で仮実装
+- **お問い合わせフォーム**: 現在はInstagram DM誘導のみ（送信されないダミーフォームは撤去、UIはgit履歴 `Contact.tsx` に残存）。Laravel構築後またはformspree等でフォーム復活
 - **Shopify連携**: 2026年5月頃開始。docs/infrastructure-plan.md に構成プランあり
 - **Laravelバックエンド**: お問い合わせ管理、Shopify連携、顧客管理。VPSに構築予定
 - **ステージング環境**: Vercel以外も検討中（Laravelと同一VPSでの運用など）
 - **favicon / OG画像**: ロゴデザイン確定待ち
+- **ヒーロー背景素材**: 現在はCSSグラデーション+グレイン（外部素材なし）。実写・動画素材が確定したら差し替え（動画の場合: クレジット表記のないライセンス素材、2〜3MB以内に圧縮、`poster`+`preload="metadata"`推奨）
 - **ドメイン**: 未決定
 
 ---

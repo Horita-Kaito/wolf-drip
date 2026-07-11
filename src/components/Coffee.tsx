@@ -115,7 +115,7 @@ export function Coffee({ items }: Props) {
           >
             {/* Image area */}
             <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent-dark)] to-[var(--color-overlay)] group-hover:scale-[1.03] transition-transform duration-1000 ease-out" />
-            {item.image ? (
+            {item.image && (
               <Image
                 src={item.image}
                 alt={item.name}
@@ -123,8 +123,6 @@ export function Coffee({ items }: Props) {
                 sizes="400px"
                 className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-1000"
               />
-            ) : (
-              <div className="absolute inset-0 bg-[url('/coffee-placeholder.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-1000" />
             )}
 
             {/* Top: Number */}
