@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Zen_Old_Mincho } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { siteUrl } from "@/lib/site";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { Marquee } from "@/components/layout/Marquee";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { siteUrl, INSTAGRAM_URL } from "@/lib/site";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -23,15 +26,13 @@ const zenOldMincho = Zen_Old_Mincho({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "WOLF DRIP — Specialty Coffee & Herb Tea",
+    default: "WOLF DRIP — Coffee & Herb Tea",
     template: "%s | WOLF DRIP",
   },
-  description:
-    "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
+  description: "Original blend coffee and herb tea grown in Japan. WOLF DRIP.",
   openGraph: {
-    title: "WOLF DRIP — Specialty Coffee & Herb Tea",
-    description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
+    title: "WOLF DRIP — Coffee & Herb Tea",
+    description: "Original blend coffee and herb tea grown in Japan. WOLF DRIP.",
     siteName: "WOLF DRIP",
     locale: "ja_JP",
     type: "website",
@@ -52,19 +53,28 @@ export default function RootLayout({
     "@type": "Organization",
     name: "WOLF DRIP",
     url: siteUrl,
-    description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド。本能を刺激する一杯を届けます。",
-    sameAs: ["https://www.instagram.com/wolfdrip2026"],
+    description: "Original blend coffee and herb tea grown in Japan.",
+    sameAs: [INSTAGRAM_URL],
   };
 
   return (
     <html lang="ja" className={`${garamond.variable} ${zenOldMincho.variable}`}>
       <body className="antialiased">
+        {/* Revealの初期状態（opacity:0）を解除するのはGSAP。JSが動かない環境では
+            本文が消えたままになるため、ここで表示側に倒す */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1;transform:none}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Marquee />
+          <Header />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

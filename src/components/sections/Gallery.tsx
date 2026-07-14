@@ -1,0 +1,145 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
+import { Reveal } from "@/components/ui/Reveal";
+
+gsap.registerPlugin(ScrollTrigger);
+
+type GalleryImage = {
+  src: string;
+  alt: string;
+  /** 縦横比。列ごとにリズムを作るため画像単位で持つ */
+  ratio: string;
+};
+
+type GalleryColumn = {
+  /** スクロール中に列を送る量(px)。中央列を最も速くして前に出す */
+  speed: number;
+  images: GalleryImage[];
+};
+
+const COLUMNS: GalleryColumn[] = [
+  {
+    speed: -60,
+    images: [
+      { src: "/images/portrait-brown.webp", alt: "WOLF DRIP のカップを持つ人物", ratio: "aspect-[4/5]" },
+      { src: "/images/cooler.webp", alt: "氷に沈めたアイスコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/night.webp", alt: "夜の街でカップを持つ人物", ratio: "aspect-[3/4]" },
+      { src: "/images/basket.webp", alt: "バスケットに入れたコーヒーバッグ", ratio: "aspect-square" },
+    ],
+  },
+  {
+    speed: -140,
+    images: [
+      { src: "/images/bags-coat.webp", alt: "コーヒーバッグを抱える人物", ratio: "aspect-[3/4]" },
+      { src: "/images/cups-shelf.webp", alt: "棚に並んだアイスコーヒー", ratio: "aspect-square" },
+      { src: "/images/table-still.webp", alt: "テーブルの上のアイスコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/tee.webp", alt: "WOLF DRIP のTシャツ", ratio: "aspect-[3/4]" },
+    ],
+  },
+  {
+    speed: -90,
+    images: [
+      { src: "/images/street.webp", alt: "街を歩く人物とカップ", ratio: "aspect-[3/4]" },
+      { src: "/images/ice-cube.webp", alt: "氷の塊に閉じ込めたカップ", ratio: "aspect-[4/5]" },
+      { src: "/images/cafe-table.webp", alt: "窓辺のテーブルとコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/car.webp", alt: "車内でカップを持つ手", ratio: "aspect-square" },
+    ],
+  },
+];
+
+export function Gallery() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const columnsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    const ctx = gsap.context(() => {
+      // 列単位の視差は横並びになるデスクトップだけ（積み上がる幅では効果がないため）
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        columnsRef.current.forEach((column, i) => {
+          const speed = COLUMNS[i]?.speed;
+          if (!column || speed === undefined) return;
+          gsap.fromTo(
+            column,
+            { y: -speed / 2 },
+            {
+              y: speed / 2,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          );
+        });
+      });
+      return () => mm.revert();
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="gallery"
+      className="overflow-hidden bg-[var(--color-bg)] px-5 py-20 md:px-8 md:py-28"
+    >
+      <div className="mx-auto max-w-[100rem]">
+        <div>
+          <Reveal>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-dark)]">
+              Gallery
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="mt-5 text-[clamp(2rem,4.2vw,3.5rem)] font-medium leading-[1.15] tracking-[0.01em] font-[family-name:var(--font-display)]">
+              The cup completes the look.
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+          {COLUMNS.map((column, columnIndex) => (
+            <div
+              key={columnIndex}
+              ref={(el) => {
+                columnsRef.current[columnIndex] = el;
+              }}
+              className={[
+                "flex flex-col gap-3 md:gap-4",
+                // モバイルは2列組み。3列目は表示すると列丈が大きく崩れるため、
+                // ここでは意図的に出さない（狭い画面では8枚見せる）
+                columnIndex === 2 ? "hidden md:flex" : "",
+                // 中央列を少し下げて段差をつける
+                columnIndex === 1 ? "md:pt-16" : "",
+              ].join(" ")}
+            >
+              {column.images.map((image) => (
+                <Reveal key={image.src}>
+                  <ParallaxImage
+                    src={image.src}
+                    alt={image.alt}
+                    strength={6}
+                    zoomOnHover
+                    sizes="(min-width: 768px) 33vw, 50vw"
+                    className={`${image.ratio} w-full rounded-[var(--radius-card)]`}
+                  />
+                </Reveal>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

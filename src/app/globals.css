@@ -31,6 +31,12 @@
   --color-border: #cbb7a3;
   --color-overlay: #2a211c;
   --color-placeholder: #8c7c6e;
+
+  /* rhode流のブロック設計: 大きな面を角丸で切り出し、外周に余白を残す */
+  --radius-block: 12px;
+  --radius-card: 8px;
+  /* 固定ヘッダーの高さ。JS側は src/lib/layout.ts の HEADER_HEIGHT と揃える */
+  --header-h: 5rem;
 }
 
 @layer base {
@@ -47,10 +53,9 @@
     width: 100%;
   }
 
-  /* Prevent GSAP pin-spacer from expanding page width */
-  .pin-spacer {
-    overflow: hidden !important;
-    max-width: 100vw !important;
+  /* 固定ヘッダー分だけアンカー位置を下げる */
+  section[id] {
+    scroll-margin-top: var(--header-h);
   }
 }
 
@@ -73,17 +78,79 @@
   border-radius: 2px;
 }
 
+/* 横スクロールトラックのスクロールバーは隠す（rhodeのスライダー同様） */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* スクロールで下からふわりと現れる要素の初期状態。
+   これを解除するのはGSAP（= JS）なので、JSが無い場合の逃げ道を
+   layout.tsx の <noscript> で用意している（無いと本文が消える） */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* モーション低減設定では最初から表示する */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 告知バーの無限ループ（2連結したトラックを半分だけ動かす） */
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* 微細なグレイン。現在はメニューカードの画像なしプレースホルダ（色面）に、
+   のっぺりしないよう質感を足すためだけに使っている */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
 /* News rich editor content */
 .news-content h2 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-top: 2em;
   margin-bottom: 0.75em;
 }
 
 .news-content h3 {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
@@ -125,7 +192,7 @@
 .news-content img {
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-card);
   margin: 2em 0;
 }
 

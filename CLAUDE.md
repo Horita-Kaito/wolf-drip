@@ -97,20 +97,39 @@ src/
     sitemap.ts        — sitemap.xml自動生成（URLはlib/site.tsから取得）
     news/[id]/page.tsx — お知らせ詳細（generateMetadata対応）
   components/
-    Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、背景動画 hero.mp4 + poster）
-    WolfDripLogo.tsx  — WOLF DRIPロゴのSVGコンポーネント
-    Concept.tsx       — コンセプト3項目（日本語の宣言コピー）
-    Coffee.tsx        — コーヒーメニュー（横スクロール）
-    HerbTea.tsx       — ハーブティーメニュー（横スクロール）
-    Location.tsx      — 所在地（全てダミーデータ。実店舗確定までpage.tsxから非表示）
-    News.tsx          — お知らせ一覧（microCMS連携）
-    Contact.tsx       — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
-    Footer.tsx        — フッター（Instagramアイコン）
-    SmoothScroll.tsx  — Lenisラッパー（ページ遷移時スクロールリセット）
+    layout/
+      Header.tsx      — 固定ヘッダー（中央ワードマーク、ヒーロー上は白抜き→スクロールでクリーム地、モバイルは全画面メニュー）
+      Marquee.tsx     — 最上部の告知ティッカー（CSSの無限ループ、hoverで停止）
+      Footer.tsx      — フッター（メニュー/連絡先/大型ワードマーク）
+      SmoothScroll.tsx — Lenisラッパー（ページ遷移時スクロールリセット、lib/lenis.tsにインスタンス共有）
+    sections/
+      Hero.tsx        — ヒーロー（SVGロゴ + DRIP落下アニメーション + 宣言コピー + ピルCTA。写真は検討中のため色面で仮置き）
+      ComingSoon.tsx  — 店舗の予告（2026年オープン予定。詳細確定後は住所・営業時間のセクションに育てる）
+      Statement.tsx   — ブランドステートメント（大判写真 + 差し込み写真 + コピー、左右交互。page.tsxから2回使用）
+      Band.tsx        — 全幅の写真バンド（視差の効いた1枚 + 一文だけ）
+      Gallery.tsx     — 3列ギャラリー（列ごとに速度を変えた視差。ブランド写真12枚）
+      MenuSection.tsx — メニュー（横スナップスライダー。コーヒー/ハーブティーで共用、toneで色分け）
+      News.tsx        — お知らせカード列（microCMS連携）
+      Contact.tsx     — お問い合わせ（写真 + 濃いスクリム。Instagram DM誘導）
+    ui/
+      PillButton.tsx  — ピルボタン（hoverで下から面が満ちて反転。#アンカーはLenisで送る）
+      Reveal.tsx      — スクロール表示モーション共通ラッパー（初期状態はglobals.cssの[data-reveal]）
+      ParallaxImage.tsx — 枠の中で画像だけが流れる視差画像（サイト全体の写真はこれ経由）
+      WolfDripLogo.tsx — WOLF DRIPロゴのSVGコンポーネント
+      InstagramIcon.tsx — Instagramアイコン
+  public/images/      — ブランド写真22点（提供素材を1400px幅/webp/q76に最適化。計3.8MB）
   lib/
     microcms.ts       — microCMSクライアント + 型定義 + 取得関数
-    site.ts           — 正規URL（siteUrl）の単一ソース
+    site.ts           — 正規URL（siteUrl）とInstagram URLの単一ソース
+    lenis.ts          — Lenisインスタンスの保持箱（ヘッダー/ボタンのアンカー遷移用）
 ```
+
+### デザイン方針（2026-07 rhode参照リニューアル）
+- [rhodeskin.com](https://www.rhodeskin.com/) のセクション設計とモーションを踏襲。カラーとフォントはWOLF DRIPのまま
+- 大きな面を角丸で切り出す（`--radius-block` 12px / `--radius-card` 8px）、ピルボタン、左右交互のメディア+コピー、横スナップスライダー
+- 写真主役のギャラリー構成。モーションは「スクロールで下から静かに現れる（`Reveal`）」＋「枠の中で写真が流れる視差（`ParallaxImage`）」の2つに統一。GSAPのpinによるスクロールジャックは使わない
+- 縦長素材を横長に切るときは `ParallaxImage` の `objectPosition` で被写体を残す（ヒーローの犬は `center 32%`）
+- ヘッダーの `backdrop-blur` は `position: fixed` の基準になるため、全画面メニューは `<header>` の外に置く（内側だとヘッダー内に閉じ込められる）
 
 ---
 
@@ -149,17 +168,23 @@ Vercel側にも同じ環境変数の設定が必要。
 - **Laravelバックエンド**: お問い合わせ管理、Shopify連携、顧客管理。VPSに構築予定
 - **ステージング環境**: Vercel以外も検討中（Laravelと同一VPSでの運用など）
 - **favicon / OG画像**: ロゴデザイン確定待ち
-- **ヒーロー背景動画**: AI生成の仮素材（DeeVid AI製、クレジット・黒帯・音声トラックは除去済み、0.9MB）。正式素材が確定したら差し替え。差し替え時も同様に: クレジットなし、黒帯クロップ、音声除去、CRF28程度で1MB前後に圧縮、`poster`画像も再生成（ffmpeg: `crop`→`-crf 28 -an -movflags +faststart`）
+- **写真素材**: ブランド写真を `public/images/` に配置済み（提供素材、2026-07）。AI生成の仮ヒーロー動画は撤去（git履歴に残存）。素材を追加・差し替える場合は同じ最適化（`magick <src> -resize 1400x -quality 76 -define webp:method=6 -strip`）を通す
 - **ドメイン**: 未決定
 
 ---
 
 ## コピー・タイポグラフィ規範（2026-07 ブランド調査に基づく）
 
-### コピーの事実制約（最重要）
-- コピーに書いてよい事実は「国産ハーブ」「スペシャルティコーヒー」「卸は直接取引のみ」だけ
-- 以下は**事実でない**ので書かない: 農園所有、製造工程の詳細（非公開方針）、コロンビア産中心、実店舗の住所・電話（店舗は構想段階）
-- 戦略は「宣言と情景型」（猿田彦珈琲・KOFFEE MAMEYA型）: 工程で証明せず、短い断言と五感の描写で語る。抽象語（高品質・こだわり・上質）は単体で使わない
+### コピーの事実制約（最重要 / 2026-07 更新）
+- コンセプトはまだ画像のイメージしか決まっていない。**サイトに書いてよい事実は「オリジナルブレンドのコーヒー」「国産ハーブ」「2026年に店舗オープン予定」の3つだけ**（店舗の場所・時期の詳細は未定なので書かない）
+- 「スペシャルティコーヒー」「卸は直接取引のみ」も現時点では書かない（以前は可としていたが撤回）
+- 以下は事実でないので書かない: 農園所有、製造工程、産地（コロンビア等）、焙煎度、実店舗の住所・電話
+- microCMSのmenu.description（産地・焙煎度が入っている）はUIに出さない。事実が固まったら `MenuSection.tsx` で復活させる
+- 量は最小限に。読み手に余計な印象を与えないよう、断定的な説明を書かない
+- **言語で役割を分ける**: 抽象的な文言は英語（Garamond / `--font-display`）、確定した事実の一言だけ日本語（Zen Old Mincho / `--font-body-ja`）。UIのラベル・CTAも英語で揃える
+  - 例: 見出し "Deep, and quiet." → 本文「オリジナルブレンドのコーヒー。」／ "Pour. It rises." →「国産ハーブのお茶。」
+  - ヒーロー "Scent arrives before reason."、バンド "Reason can wait."（商品の BEFORE REASON と対）
+- font-boldは使わない（下記タイポグラフィ参照）
 
 ### タイポグラフィ
 - 2書体システム: 欧文 EB Garamond / 和文 Zen Old Mincho（next/font/google、`--font-display` / `--font-display-ja`。`--font-body`系はglobals.cssでエイリアス）
