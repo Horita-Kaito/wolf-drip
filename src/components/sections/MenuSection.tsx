@@ -41,10 +41,13 @@ export function MenuSection({ id, title, items, tone }: Props) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  // 商品が3点以下ならPCでは横幅に収まりきるため、送りボタン自体を出さない
+  const [overflows, setOverflows] = useState(false);
 
   const syncEdges = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
+    setOverflows(track.scrollWidth > track.clientWidth + 8);
     setAtStart(track.scrollLeft <= 8);
     setAtEnd(track.scrollLeft >= track.scrollWidth - track.clientWidth - 8);
   }, []);
@@ -80,7 +83,10 @@ export function MenuSection({ id, title, items, tone }: Props) {
           </Reveal>
         </div>
 
-        <Reveal delay={0.16} className="hidden shrink-0 gap-3 md:flex">
+        <Reveal
+          delay={0.16}
+          className={`shrink-0 gap-3 ${overflows ? "hidden md:flex" : "hidden"}`}
+        >
           {([-1, 1] as const).map((direction) => (
             <button
               key={direction}
@@ -122,7 +128,8 @@ export function MenuSection({ id, title, items, tone }: Props) {
             as="li"
             key={`${item.name}-${i}`}
             delay={Math.min(i, 3) * 0.08}
-            className="group w-[74vw] shrink-0 snap-start sm:w-[46vw] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)]"
+            // PCでは常に3枚で横幅いっぱい（gap-4 = 1rem × 2 を引いて3等分）
+            className="group w-[74vw] shrink-0 snap-start sm:w-[46vw] lg:w-[calc((100%-2rem)/3)]"
           >
             {/* 画像面 */}
             {item.image ? (
@@ -131,7 +138,7 @@ export function MenuSection({ id, title, items, tone }: Props) {
                 alt={item.name}
                 strength={5}
                 zoomOnHover
-                sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 46vw, 74vw"
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 46vw, 74vw"
                 className="aspect-[4/5] w-full rounded-[var(--radius-card)]"
               >
                 <span className="absolute left-4 top-4 z-10 text-[10px] uppercase tracking-[0.25em] text-[var(--color-fg-inverse)]/70">
