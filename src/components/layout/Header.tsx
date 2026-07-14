@@ -43,7 +43,8 @@ export function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
-  // ヒーローの上に重なっている間は白抜き、スクロール後（とメニュー展開中）はクリーム地に前景色
+  // ヒーローの面もベージュなので文字色は常に前景色（焦げ茶）。
+  // ヒーローに重なっている間だけ、地と枠線を消して面に溶かす
   const overlay = isHome && !scrolled && !menuOpen;
 
   const handleAnchor = (
@@ -62,9 +63,7 @@ export function Header() {
     lenis.scrollTo(`#${hash}`, { offset: -HEADER_HEIGHT });
   };
 
-  const tint = overlay
-    ? "text-[var(--color-fg-inverse)]"
-    : "text-[var(--color-fg)]";
+  const tint = "text-[var(--color-fg)]";
 
   const linkClass = `text-[11px] uppercase tracking-[0.25em] transition-opacity duration-300 hover:opacity-60 ${tint}`;
 
