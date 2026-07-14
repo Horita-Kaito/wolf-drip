@@ -4,7 +4,6 @@ import { Reveal } from "@/components/ui/Reveal";
 type NewsItem = {
   id: string;
   date: string;
-  category: string;
   title: string;
 };
 
@@ -22,13 +21,8 @@ export function News({ items }: Props) {
     >
       <div className="mx-auto max-w-[100rem]">
         <Reveal>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-dark)]">
+          <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-medium leading-[1.15] tracking-[0.01em] font-[family-name:var(--font-display)]">
             News
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="mt-5 text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.3] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
-            お知らせ
           </h2>
         </Reveal>
 
@@ -41,15 +35,13 @@ export function News({ items }: Props) {
                 className="group flex h-full flex-col justify-between rounded-[var(--radius-card)] bg-[var(--color-surface)] p-8 transition-transform duration-500 ease-out hover:-translate-y-1"
               >
                 <div>
-                  <div className="flex flex-wrap items-center gap-4">
-                    <span className="text-xs tabular-nums text-[var(--color-muted)]">
-                      {item.date}
-                    </span>
-                    <span className="rounded-full border border-[var(--color-border)] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-dark)]">
-                      {item.category}
-                    </span>
-                  </div>
-                  <h3 className="mt-6 text-base leading-[1.9] tracking-[0.05em] font-[family-name:var(--font-body-ja)]">
+                  {/* カテゴリ（microCMS側は日本語）は出さない。表記は英語で統一し、
+                      Newsセクション内でカテゴリを出しても情報が増えないため */}
+                  <span className="text-xs tabular-nums text-[var(--color-muted)]">
+                    {item.date}
+                  </span>
+                  {/* タイトルはmicroCMSの入力。和欧どちらでも body のフォントスタックで組む */}
+                  <h3 className="mt-6 text-base leading-[1.9] tracking-[0.05em]">
                     {item.title}
                   </h3>
                 </div>

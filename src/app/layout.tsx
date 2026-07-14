@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     default: "WOLF DRIP — Coffee & Herb Tea",
     template: "%s | WOLF DRIP",
   },
-  description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。WOLF DRIP。",
+  description: "Original blend coffee and herb tea grown in Japan. WOLF DRIP.",
   openGraph: {
     title: "WOLF DRIP — Coffee & Herb Tea",
-    description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。WOLF DRIP。",
+    description: "Original blend coffee and herb tea grown in Japan. WOLF DRIP.",
     siteName: "WOLF DRIP",
     locale: "ja_JP",
     type: "website",
@@ -53,7 +53,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "WOLF DRIP",
     url: siteUrl,
-    description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。",
+    description: "Original blend coffee and herb tea grown in Japan.",
     sameAs: [INSTAGRAM_URL],
   };
 

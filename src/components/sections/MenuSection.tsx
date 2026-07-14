@@ -4,9 +4,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 
+// nameJa（和名）と description（産地・焙煎度）はmicroCMSにあるが表示しない。
+// 表記は英語で統一し、未確定の事実は出さない方針（CLAUDE.md参照）
 export type MenuCardItem = {
   name: string;
-  nameJa: string;
   flavor: string;
   price?: string;
   image?: string;
@@ -16,7 +17,6 @@ type Tone = "coffee" | "herb";
 
 type Props = {
   id: string;
-  eyebrow: string;
   title: string;
   items: MenuCardItem[];
   tone: Tone;
@@ -37,7 +37,7 @@ const tonePlaceholder: Record<Tone, string> = {
  * スクロールジャック（GSAPのpin）はやめ、指・トラックパッドでそのまま引ける
  * ネイティブの横スクロール＋スナップに置き換えている。
  */
-export function MenuSection({ id, eyebrow, title, items, tone }: Props) {
+export function MenuSection({ id, title, items, tone }: Props) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -74,12 +74,7 @@ export function MenuSection({ id, eyebrow, title, items, tone }: Props) {
       <div className="mx-auto flex max-w-[100rem] items-end justify-between gap-8 px-5 md:px-8">
         <div>
           <Reveal>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-dark)]">
-              {eyebrow}
-            </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h2 className="mt-5 text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.3] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
+            <h2 className="text-[clamp(2rem,4.2vw,3.5rem)] font-medium leading-[1.15] tracking-[0.01em] font-[family-name:var(--font-display)]">
               {title}
             </h2>
           </Reveal>
@@ -171,14 +166,6 @@ export function MenuSection({ id, eyebrow, title, items, tone }: Props) {
                   </span>
                 )}
               </div>
-              {item.nameJa && (
-                <p className="mt-2 text-xs tracking-[0.1em] text-[var(--color-muted)] font-[family-name:var(--font-body-ja)]">
-                  {item.nameJa}
-                </p>
-              )}
-              {/* microCMSのdescription（産地・焙煎度）は、まだ確定していない事実を
-                  読み手に伝えてしまうため、型からもpropsからも外している。
-                  事実が固まったら page.tsx の toCard と MenuCardItem に戻す */}
             </div>
           </Reveal>
         ))}

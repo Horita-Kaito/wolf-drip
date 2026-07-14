@@ -78,12 +78,10 @@ export default async function NewsDetailPage({ params }: Props) {
 
         {/* Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-sm text-[var(--color-muted)] font-[family-name:var(--font-body)] tabular-nums">
+          {/* カテゴリ（microCMS側は日本語）は出さない。表記は英語で統一する */}
+          <div className="mb-4">
+            <span className="text-sm tabular-nums text-[var(--color-muted)]">
               {date}
-            </span>
-            <span className="text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 border border-[var(--color-gold)]/50 text-[var(--color-accent-dark)] rounded font-[family-name:var(--font-body)]">
-              {article.category}
             </span>
           </div>
           <h1 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,4vw,3rem)] font-medium leading-tight">

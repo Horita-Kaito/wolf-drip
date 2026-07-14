@@ -25,14 +25,13 @@ export default async function Home() {
         day: "2-digit",
       })
       .replaceAll("/", "."),
-    category: item.category,
+    // category（microCMS側は日本語）は表示しないため渡さない
     title: item.title,
   }));
 
-  // descriptionは意図的に渡していない（産地・焙煎度は未確定のため非表示。MenuSection.tsx参照）
+  // nameJa / description は意図的に渡していない（表記は英語で統一、産地・焙煎度は未確定。MenuSection.tsx参照）
   const toCard = (item: (typeof menuItems)[number]) => ({
     name: item.name,
-    nameJa: item.nameJa,
     flavor: item.flavor,
     price: item.price,
     image: item.image?.url,
@@ -56,7 +55,7 @@ export default async function Home() {
         index="01"
         eyebrow="Coffee"
         title="Deep, and quiet."
-        body="オリジナルブレンドのコーヒー。"
+        body="Original blend coffee."
         cta={{ href: "#coffee", label: "View Coffee" }}
         image={{
           src: "/images/pour-splash.webp",
@@ -67,8 +66,7 @@ export default async function Home() {
 
       <MenuSection
         id="coffee"
-        eyebrow="Coffee"
-        title="コーヒー"
+        title="Coffee"
         items={coffeeData}
         tone="coffee"
       />
@@ -78,7 +76,7 @@ export default async function Home() {
         index="02"
         eyebrow="Herb Tea"
         title="Pour. It rises."
-        body="国産ハーブのお茶。"
+        body="Herb tea, grown in Japan."
         cta={{ href: "#tea", label: "View Herb Tea" }}
         image={{
           src: "/images/towels-ledge.webp",
@@ -93,8 +91,7 @@ export default async function Home() {
 
       <MenuSection
         id="tea"
-        eyebrow="Herb Tea"
-        title="ハーブティー"
+        title="Herb Tea"
         items={herbTeaData}
         tone="herb"
       />
