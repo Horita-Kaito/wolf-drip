@@ -6,6 +6,7 @@ import { INSTAGRAM_URL } from "@/lib/site";
 const NAV = [
   { href: "/#coffee", label: "Coffee" },
   { href: "/#tea", label: "Herb Tea" },
+  { href: "/#store", label: "Store" },
   { href: "/#news", label: "News" },
   { href: "/#contact", label: "Contact" },
 ];

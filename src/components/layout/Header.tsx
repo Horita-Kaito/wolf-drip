@@ -9,9 +9,11 @@ import { INSTAGRAM_URL } from "@/lib/site";
 import { getLenis } from "@/lib/lenis";
 import { HEADER_HEIGHT } from "@/lib/layout";
 
+// 左に2つ（NAV.slice(0, 2)）、右に残りが並ぶ
 const NAV = [
   { hash: "coffee", label: "Coffee" },
   { hash: "tea", label: "Herb Tea" },
+  { hash: "store", label: "Store" },
   { hash: "news", label: "News" },
   { hash: "contact", label: "Contact" },
 ] as const;

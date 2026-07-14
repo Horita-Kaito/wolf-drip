@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Statement } from "@/components/sections/Statement";
 import { Band } from "@/components/sections/Band";
 import { Gallery } from "@/components/sections/Gallery";
+import { ComingSoon } from "@/components/sections/ComingSoon";
 import { MenuSection } from "@/components/sections/MenuSection";
 import { News } from "@/components/sections/News";
 import { Contact } from "@/components/sections/Contact";
@@ -72,17 +73,7 @@ export default async function Home() {
         tone="coffee"
       />
 
-      <Band
-        image={{
-          src: "/images/canvas-logo.webp",
-          alt: "布に型押しされた WOLF DRIP のロゴ",
-        }}
-        eyebrow="Before Reason"
-        title="Reason can wait."
-      />
-
-      <Gallery />
-
+      {/* 主役はコーヒーだが、ハーブティーもコーヒーの直後に置いて埋もれさせない */}
       <Statement
         index="02"
         eyebrow="Herb Tea"
@@ -107,6 +98,19 @@ export default async function Home() {
         items={herbTeaData}
         tone="herb"
       />
+
+      <Band
+        image={{
+          src: "/images/canvas-logo.webp",
+          alt: "布に型押しされた WOLF DRIP のロゴ",
+        }}
+        eyebrow="Before Reason"
+        title="Reason can wait."
+      />
+
+      <Gallery />
+
+      <ComingSoon />
 
       <News items={newsData} />
       <Contact />
