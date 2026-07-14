@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Zen_Old_Mincho } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { siteUrl } from "@/lib/site";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { Marquee } from "@/components/layout/Marquee";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { siteUrl, INSTAGRAM_URL } from "@/lib/site";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -54,7 +57,7 @@ export default function RootLayout({
     url: siteUrl,
     description:
       "スペシャルティコーヒーと国産ハーブティーのブランド。本能を刺激する一杯を届けます。",
-    sameAs: ["https://www.instagram.com/wolfdrip2026"],
+    sameAs: [INSTAGRAM_URL],
   };
 
   return (
@@ -64,7 +67,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Marquee />
+          <Header />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

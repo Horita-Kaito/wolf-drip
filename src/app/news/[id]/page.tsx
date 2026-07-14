@@ -54,7 +54,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-fg)]">
-      <div className="max-w-3xl mx-auto px-6 py-32">
+      <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
         {/* Back link */}
         <Link
           href="/#news"

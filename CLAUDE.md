@@ -97,20 +97,33 @@ src/
     sitemap.ts        — sitemap.xml自動生成（URLはlib/site.tsから取得）
     news/[id]/page.tsx — お知らせ詳細（generateMetadata対応）
   components/
-    Hero.tsx          — ヒーロー（SVGロゴ + DRIP落下アニメーション、背景動画 hero.mp4 + poster）
-    WolfDripLogo.tsx  — WOLF DRIPロゴのSVGコンポーネント
-    Concept.tsx       — コンセプト3項目（日本語の宣言コピー）
-    Coffee.tsx        — コーヒーメニュー（横スクロール）
-    HerbTea.tsx       — ハーブティーメニュー（横スクロール）
-    Location.tsx      — 所在地（全てダミーデータ。実店舗確定までpage.tsxから非表示）
-    News.tsx          — お知らせ一覧（microCMS連携）
-    Contact.tsx       — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
-    Footer.tsx        — フッター（Instagramアイコン）
-    SmoothScroll.tsx  — Lenisラッパー（ページ遷移時スクロールリセット）
+    layout/
+      Header.tsx      — 固定ヘッダー（中央ワードマーク、ヒーロー上は白抜き→スクロールでクリーム地、モバイルは全画面メニュー）
+      Marquee.tsx     — 最上部の告知ティッカー（CSSの無限ループ、hoverで停止）
+      Footer.tsx      — フッター（メニュー/連絡先/大型ワードマーク）
+      SmoothScroll.tsx — Lenisラッパー（ページ遷移時スクロールリセット、lib/lenis.tsにインスタンス共有）
+    sections/
+      Hero.tsx        — ヒーロー（角丸ブロック + SVGロゴ + DRIP落下アニメーション + 宣言コピー + ピルCTA）
+      Statement.tsx   — ブランドステートメント（メディア面 + コピー、左右交互。page.tsxから2回使用）
+      MenuSection.tsx — メニュー（横スナップスライダー。コーヒー/ハーブティーで共用、toneで色分け）
+      News.tsx        — お知らせカード列（microCMS連携）
+      Contact.tsx     — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
+    ui/
+      PillButton.tsx  — ピルボタン（hoverで下から面が満ちて反転。#アンカーはLenisで送る）
+      Reveal.tsx      — スクロール表示モーション共通ラッパー（初期状態はglobals.cssの[data-reveal]）
+      WolfDripLogo.tsx — WOLF DRIPロゴのSVGコンポーネント
+      InstagramIcon.tsx — Instagramアイコン
   lib/
     microcms.ts       — microCMSクライアント + 型定義 + 取得関数
-    site.ts           — 正規URL（siteUrl）の単一ソース
+    site.ts           — 正規URL（siteUrl）とInstagram URLの単一ソース
+    lenis.ts          — Lenisインスタンスの保持箱（ヘッダー/ボタンのアンカー遷移用）
 ```
+
+### デザイン方針（2026-07 rhode参照リニューアル）
+- [rhodeskin.com](https://www.rhodeskin.com/) のセクション設計とモーションを踏襲。カラーとフォントはWOLF DRIPのまま
+- 大きな面を角丸で切り出す（`--radius-block` 12px / `--radius-card` 8px）、ピルボタン、左右交互のメディア+コピー、横スナップスライダー
+- モーションは「スクロールで下から静かに現れる」に統一（`Reveal`）。GSAPのpinによるスクロールジャックは使わない
+- ヘッダーの `backdrop-blur` は `position: fixed` の基準になるため、全画面メニューは `<header>` の外に置く（内側だとヘッダー内に閉じ込められる）
 
 ---
 
@@ -149,7 +162,7 @@ Vercel側にも同じ環境変数の設定が必要。
 - **Laravelバックエンド**: お問い合わせ管理、Shopify連携、顧客管理。VPSに構築予定
 - **ステージング環境**: Vercel以外も検討中（Laravelと同一VPSでの運用など）
 - **favicon / OG画像**: ロゴデザイン確定待ち
-- **ヒーロー背景動画**: AI生成の仮素材（DeeVid AI製、クレジット・黒帯・音声トラックは除去済み、0.9MB）。正式素材が確定したら差し替え。差し替え時も同様に: クレジットなし、黒帯クロップ、音声除去、CRF28程度で1MB前後に圧縮、`poster`画像も再生成（ffmpeg: `crop`→`-crf 28 -an -movflags +faststart`）
+- **写真・映像素材**: AI生成の仮ヒーロー動画は撤去（git履歴に残存）。現状ヒーロー/ステートメントの面は色面＋グレインのCSSで代用中。正式素材が入り次第、`Hero.tsx` の背景divと `Statement.tsx` のメディア面を画像/動画に差し替える（レイアウトは変更不要）
 - **ドメイン**: 未決定
 
 ---
