@@ -15,30 +15,41 @@ type GalleryImage = {
   ratio: string;
 };
 
-// 3列。列ごとにスクロール速度を変え、段違いに流れる見え方をつくる
-const COLUMNS: GalleryImage[][] = [
-  [
-    { src: "/images/portrait-brown.webp", alt: "WOLF DRIP のカップを持つ人物", ratio: "aspect-[4/5]" },
-    { src: "/images/cooler.webp", alt: "氷に沈めたアイスコーヒー", ratio: "aspect-[4/5]" },
-    { src: "/images/night.webp", alt: "夜の街でカップを持つ人物", ratio: "aspect-[3/4]" },
-    { src: "/images/basket.webp", alt: "バスケットに入れたコーヒーバッグ", ratio: "aspect-square" },
-  ],
-  [
-    { src: "/images/bags-coat.webp", alt: "コーヒーバッグを抱える人物", ratio: "aspect-[3/4]" },
-    { src: "/images/cups-shelf.webp", alt: "棚に並んだアイスコーヒー", ratio: "aspect-square" },
-    { src: "/images/table-still.webp", alt: "テーブルの上のアイスコーヒー", ratio: "aspect-[4/5]" },
-    { src: "/images/tee.webp", alt: "WOLF DRIP のTシャツ", ratio: "aspect-[3/4]" },
-  ],
-  [
-    { src: "/images/street.webp", alt: "街を歩く人物とカップ", ratio: "aspect-[3/4]" },
-    { src: "/images/ice-cube.webp", alt: "氷の塊に閉じ込めたカップ", ratio: "aspect-[4/5]" },
-    { src: "/images/cafe-table.webp", alt: "窓辺のテーブルとコーヒー", ratio: "aspect-[4/5]" },
-    { src: "/images/car.webp", alt: "車内でカップを持つ手", ratio: "aspect-square" },
-  ],
-];
+type GalleryColumn = {
+  /** スクロール中に列を送る量(px)。中央列を最も速くして前に出す */
+  speed: number;
+  images: GalleryImage[];
+};
 
-// 中央列を最も速く送る（左右より前に出て見える）
-const SPEED = [-60, -140, -90];
+const COLUMNS: GalleryColumn[] = [
+  {
+    speed: -60,
+    images: [
+      { src: "/images/portrait-brown.webp", alt: "WOLF DRIP のカップを持つ人物", ratio: "aspect-[4/5]" },
+      { src: "/images/cooler.webp", alt: "氷に沈めたアイスコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/night.webp", alt: "夜の街でカップを持つ人物", ratio: "aspect-[3/4]" },
+      { src: "/images/basket.webp", alt: "バスケットに入れたコーヒーバッグ", ratio: "aspect-square" },
+    ],
+  },
+  {
+    speed: -140,
+    images: [
+      { src: "/images/bags-coat.webp", alt: "コーヒーバッグを抱える人物", ratio: "aspect-[3/4]" },
+      { src: "/images/cups-shelf.webp", alt: "棚に並んだアイスコーヒー", ratio: "aspect-square" },
+      { src: "/images/table-still.webp", alt: "テーブルの上のアイスコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/tee.webp", alt: "WOLF DRIP のTシャツ", ratio: "aspect-[3/4]" },
+    ],
+  },
+  {
+    speed: -90,
+    images: [
+      { src: "/images/street.webp", alt: "街を歩く人物とカップ", ratio: "aspect-[3/4]" },
+      { src: "/images/ice-cube.webp", alt: "氷の塊に閉じ込めたカップ", ratio: "aspect-[4/5]" },
+      { src: "/images/cafe-table.webp", alt: "窓辺のテーブルとコーヒー", ratio: "aspect-[4/5]" },
+      { src: "/images/car.webp", alt: "車内でカップを持つ手", ratio: "aspect-square" },
+    ],
+  },
+];
 
 export function Gallery() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -53,12 +64,13 @@ export function Gallery() {
       const mm = gsap.matchMedia();
       mm.add("(min-width: 768px)", () => {
         columnsRef.current.forEach((column, i) => {
-          if (!column) return;
+          const speed = COLUMNS[i]?.speed;
+          if (!column || speed === undefined) return;
           gsap.fromTo(
             column,
-            { y: -SPEED[i] / 2 },
+            { y: -speed / 2 },
             {
-              y: SPEED[i] / 2,
+              y: speed / 2,
               ease: "none",
               scrollTrigger: {
                 trigger: sectionRef.current,
@@ -105,13 +117,14 @@ export function Gallery() {
               }}
               className={[
                 "flex flex-col gap-3 md:gap-4",
-                // 3列目はモバイルでは2列に収まらないため、狭い画面では隠す
+                // モバイルは2列組み。3列目は表示すると列丈が大きく崩れるため、
+                // ここでは意図的に出さない（狭い画面では8枚見せる）
                 columnIndex === 2 ? "hidden md:flex" : "",
                 // 中央列を少し下げて段差をつける
                 columnIndex === 1 ? "md:pt-16" : "",
               ].join(" ")}
             >
-              {column.map((image) => (
+              {column.images.map((image) => (
                 <Reveal key={image.src}>
                   <ParallaxImage
                     src={image.src}

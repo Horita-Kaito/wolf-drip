@@ -28,12 +28,12 @@ export default async function Home() {
     title: item.title,
   }));
 
+  // descriptionは意図的に渡していない（産地・焙煎度は未確定のため非表示。MenuSection.tsx参照）
   const toCard = (item: (typeof menuItems)[number]) => ({
     name: item.name,
     nameJa: item.nameJa,
     flavor: item.flavor,
     price: item.price,
-    description: item.description,
     image: item.image?.url,
   });
 

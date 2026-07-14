@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { getLenis } from "@/lib/lenis";
+import { HEADER_HEIGHT } from "@/lib/layout";
 
 type Tone = "light" | "dark";
 
@@ -60,8 +61,12 @@ export function PillButton({
       className={classes}
       onClick={(event) => {
         if (!isAnchor) return;
+        // Lenisが未初期化なら既定のアンカー遷移に任せる（preventDefaultして
+        // からスキップすると、クリックが完全な無反応になる）
+        const lenis = getLenis();
+        if (!lenis) return;
         event.preventDefault();
-        getLenis()?.scrollTo(href, { offset: -80 });
+        lenis.scrollTo(href, { offset: -HEADER_HEIGHT });
       }}
     >
       {label}

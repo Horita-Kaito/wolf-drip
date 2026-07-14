@@ -7,6 +7,7 @@ import { WolfDripLogo } from "@/components/ui/WolfDripLogo";
 import { InstagramIcon } from "@/components/ui/InstagramIcon";
 import { INSTAGRAM_URL } from "@/lib/site";
 import { getLenis } from "@/lib/lenis";
+import { HEADER_HEIGHT } from "@/lib/layout";
 
 const NAV = [
   { hash: "coffee", label: "Coffee" },
@@ -48,9 +49,15 @@ export function Header() {
     hash: string,
   ) => {
     if (!isHome) return; // 他ページからは通常遷移（/#hash）に任せる
-    event.preventDefault();
     setMenuOpen(false);
-    getLenis()?.scrollTo(`#${hash}`, { offset: -80 });
+
+    // Lenisが未初期化ならブラウザ既定のアンカー遷移に任せる。
+    // 位置は globals.css の scroll-margin-top が合わせてくれる
+    const lenis = getLenis();
+    if (!lenis) return;
+
+    event.preventDefault();
+    lenis.scrollTo(`#${hash}`, { offset: -HEADER_HEIGHT });
   };
 
   const tint = overlay
@@ -145,9 +152,13 @@ export function Header() {
 
       {/* モバイル: 全画面メニュー。
           ヘッダーの backdrop-blur は fixed の基準（containing block）になるため、
-          パネルはヘッダーの外に出さないとヘッダー内に閉じ込められる */}
+          パネルはヘッダーの外に出さないとヘッダー内に閉じ込められる。
+          閉じている間は inert でキーボードフォーカスと読み上げの対象から外す
+          （opacity:0 だけだと、見えないリンクにTabが入る） */}
       <div
+        inert={!menuOpen}
         className={[
+          // top-20 はヘッダー高（HEADER_HEIGHT / --header-h）と揃える
           "fixed inset-x-0 bottom-0 top-20 z-40 bg-[var(--color-bg)] px-6 pt-10 transition-opacity duration-300 md:hidden",
           menuOpen
             ? "pointer-events-auto opacity-100"

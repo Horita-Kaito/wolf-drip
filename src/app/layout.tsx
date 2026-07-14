@@ -60,6 +60,11 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${garamond.variable} ${zenOldMincho.variable}`}>
       <body className="antialiased">
+        {/* Revealの初期状態（opacity:0）を解除するのはGSAP。JSが動かない環境では
+            本文が消えたままになるため、ここで表示側に倒す */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1;transform:none}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

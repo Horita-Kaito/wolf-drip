@@ -18,7 +18,8 @@ type Props = {
 
 /**
  * rhode の image-with-content を踏襲したブランドステートメント。
- * 大きな写真を視差で流し、反対側に短い断言と情景のコピーを置く。
+ * 大きな写真を視差で流し、反対側に英語の短い一文（印象）と
+ * 日本語の一行（事実）を置く。コピー規範は CLAUDE.md を参照。
  */
 export function Statement({
   index,

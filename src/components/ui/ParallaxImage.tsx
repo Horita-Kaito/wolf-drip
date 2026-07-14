@@ -25,7 +25,8 @@ type Props = {
 
 /**
  * 枠の中で画像だけがスクロールに合わせてゆっくり流れる、ギャラリー用の視差画像。
- * 画像は枠より縦に大きく描いておき（scale）、その余白を使って動かすので隙間が出ない。
+ * 画像を載せた内側divを枠より縦に大きく取り（top/bottomを -strength% に引き伸ばす）、
+ * その余白の範囲だけ動かすので、動かしても枠に隙間ができない。
  */
 export function ParallaxImage({
   src,
@@ -45,12 +46,17 @@ export function ParallaxImage({
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
+    // yPercent は「内側div自身の高さ」に対する割合。内側divは枠より
+    // (1 + 2*strength/100) 倍高いので、そのまま strength を渡すと余白を
+    // travel > slack で越えてしまい、両端で下地が覗く。ここで割り戻す。
+    const travel = (strength * 100) / (100 + 2 * strength);
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         innerRef.current,
-        { yPercent: -strength },
+        { yPercent: -travel },
         {
-          yPercent: strength,
+          yPercent: travel,
           ease: "none",
           scrollTrigger: {
             trigger: frameRef.current,
@@ -65,10 +71,17 @@ export function ParallaxImage({
     return () => ctx.revert();
   }, [strength]);
 
+  // 呼び出し側が absolute 等を渡すことがある。Tailwindの生成CSSでは
+  // .relative が .absolute より後に来るため、無条件に relative を足すと
+  // 渡された位置指定が負ける。位置指定が来ていないときだけ relative を補う。
+  const hasPositionClass = /(^|\s)(absolute|fixed|sticky|static)(\s|$)/.test(
+    className,
+  );
+
   return (
     <div
       ref={frameRef}
-      className={`group relative overflow-hidden bg-[var(--color-surface-strong)] ${className}`}
+      className={`group ${hasPositionClass ? "" : "relative"} overflow-hidden bg-[var(--color-surface-strong)] ${className}`}
     >
       <div
         ref={innerRef}

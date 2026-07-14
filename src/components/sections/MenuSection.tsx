@@ -9,7 +9,6 @@ export type MenuCardItem = {
   nameJa: string;
   flavor: string;
   price?: string;
-  description: string;
   image?: string;
 };
 
@@ -177,8 +176,9 @@ export function MenuSection({ id, eyebrow, title, items, tone }: Props) {
                   {item.nameJa}
                 </p>
               )}
-              {/* microCMSのdescription（産地・焙煎度）は、まだ確定していない事実まで
-                  読み手に伝えてしまうため出さない。決まり次第ここに戻す */}
+              {/* microCMSのdescription（産地・焙煎度）は、まだ確定していない事実を
+                  読み手に伝えてしまうため、型からもpropsからも外している。
+                  事実が固まったら page.tsx の toCard と MenuCardItem に戻す */}
             </div>
           </Reveal>
         ))}

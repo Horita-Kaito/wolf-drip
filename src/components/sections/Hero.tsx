@@ -2,13 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WolfDripLogo } from "@/components/ui/WolfDripLogo";
 import { PillButton } from "@/components/ui/PillButton";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 
-gsap.registerPlugin(ScrollTrigger);
-
+// スクロール連動（背景写真の視差）は ParallaxImage 側が持つ。
+// ここは読み込み時のタイムラインだけなので ScrollTrigger は不要
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const logoRef = useRef<SVGSVGElement>(null);
