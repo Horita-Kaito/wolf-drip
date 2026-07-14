@@ -27,7 +27,7 @@ export function Band({ image, eyebrow, title }: Props) {
             <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-soft)]">
               {eyebrow}
             </p>
-            <p className="mt-5 max-w-[14em] text-[clamp(1.6rem,3.4vw,2.75rem)] font-medium leading-[1.45] tracking-[0.06em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-body-ja)]">
+            <p className="mt-5 max-w-[12em] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.2] tracking-[0.01em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-display)]">
               {title}
             </p>
           </div>

@@ -68,16 +68,17 @@ export function Hero() {
 
             <div ref={copyRef} className="mt-8">
               <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-soft)]">
-                Before Reason
+                Coffee &amp; Herb Tea
               </p>
-              <h1 className="mt-5 max-w-[16em] text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.35] tracking-[0.06em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-body-ja)]">
-                香りは、理屈より速い。
+              {/* 抽象的な文言は英語で置く（説明的にならず、印象だけが残る） */}
+              <h1 className="mt-5 max-w-[14em] text-[clamp(2.1rem,4.4vw,3.75rem)] font-medium leading-[1.15] tracking-[0.01em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-display)]">
+                Scent arrives before reason.
               </h1>
             </div>
           </div>
 
           <PillButton href="#coffee" tone="dark">
-            Menu を見る
+            Menu
           </PillButton>
         </div>
       </ParallaxImage>

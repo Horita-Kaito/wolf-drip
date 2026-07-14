@@ -90,8 +90,8 @@ export function Gallery() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mt-5 text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.3] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
-              持ち歩く。
+            <h2 className="mt-5 text-[clamp(2rem,4.2vw,3.5rem)] font-medium leading-[1.15] tracking-[0.01em] font-[family-name:var(--font-display)]">
+              Carried, every day.
             </h2>
           </Reveal>
         </div>

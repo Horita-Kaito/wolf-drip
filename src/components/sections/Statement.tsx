@@ -72,8 +72,9 @@ export function Statement({
             </p>
           </Reveal>
 
+          {/* 見出しは英語（抽象）、その下の1行だけ日本語（事実） */}
           <Reveal delay={0.08}>
-            <h2 className="mt-6 text-[clamp(1.7rem,3.2vw,2.75rem)] font-medium leading-[1.5] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
+            <h2 className="mt-6 text-[clamp(1.9rem,3.4vw,3rem)] font-medium leading-[1.2] tracking-[0.01em] font-[family-name:var(--font-display)]">
               {title}
             </h2>
           </Reveal>

@@ -25,8 +25,8 @@ export function Contact() {
               Contact
             </p>
 
-            <h2 className="mt-6 max-w-[18em] text-[clamp(1.7rem,3.4vw,2.75rem)] font-medium leading-[1.5] tracking-[0.06em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-body-ja)]">
-              この一杯を、あなたの街に。
+            <h2 className="mt-6 max-w-[14em] text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-[1.2] tracking-[0.01em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-display)]">
+              Say hello.
             </h2>
 
             {/* 説明は置かず、窓口だけを示す */}

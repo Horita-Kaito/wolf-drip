@@ -54,9 +54,9 @@ export default async function Home() {
       <Statement
         index="01"
         eyebrow="Coffee"
-        title="濃く、静かに。"
+        title="Deep, and quiet."
         body="オリジナルブレンドのコーヒー。"
-        cta={{ href: "#coffee", label: "コーヒーを見る" }}
+        cta={{ href: "#coffee", label: "View Coffee" }}
         image={{
           src: "/images/pour-splash.webp",
           alt: "カップに注がれ、跳ねるコーヒー",
@@ -78,7 +78,7 @@ export default async function Home() {
           alt: "布に型押しされた WOLF DRIP のロゴ",
         }}
         eyebrow="Before Reason"
-        title="理由は、あとでいい。"
+        title="Reason can wait."
       />
 
       <Gallery />
@@ -86,9 +86,9 @@ export default async function Home() {
       <Statement
         index="02"
         eyebrow="Herb Tea"
-        title="湯を注ぐ。香りが立つ。"
+        title="Pour. It rises."
         body="国産ハーブのお茶。"
-        cta={{ href: "#tea", label: "ハーブティーを見る" }}
+        cta={{ href: "#tea", label: "View Herb Tea" }}
         image={{
           src: "/images/towels-ledge.webp",
           alt: "窓辺に置かれたタオルとカップ",
