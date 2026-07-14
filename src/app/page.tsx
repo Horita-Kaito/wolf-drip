@@ -57,11 +57,7 @@ export default async function Home() {
         title="Deep, and quiet."
         body="Original blend coffee."
         cta={{ href: "#coffee", label: "View Coffee" }}
-        image={{
-          src: "/images/pour-splash.webp",
-          alt: "カップに注がれ、跳ねるコーヒー",
-        }}
-        inset={{ src: "/images/beans.webp", alt: "焙煎したコーヒー豆" }}
+        image={{ src: "/images/beans.webp", alt: "焙煎したコーヒー豆" }}
       />
 
       <MenuSection
@@ -81,10 +77,6 @@ export default async function Home() {
         image={{
           src: "/images/towels-ledge.webp",
           alt: "窓辺に置かれたタオルとカップ",
-        }}
-        inset={{
-          src: "/images/table-still.webp",
-          alt: "テーブルの上のアイスコーヒー",
         }}
         reverse
       />

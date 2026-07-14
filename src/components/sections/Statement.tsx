@@ -10,8 +10,6 @@ type Props = {
   body: string;
   cta: { href: string; label: string };
   image: { src: string; alt: string };
-  /** 添える小さな2枚目（ずらして重ねる）。無ければ1枚組み */
-  inset?: { src: string; alt: string };
   /** true でメディアを右に置く（左右交互にするため） */
   reverse?: boolean;
 };
@@ -28,14 +26,13 @@ export function Statement({
   body,
   cta,
   image,
-  inset,
   reverse = false,
 }: Props) {
   return (
     <section className="bg-[var(--color-bg)] px-5 py-20 md:px-8 md:py-28">
       <div className="mx-auto grid max-w-[100rem] items-center gap-12 md:grid-cols-2 md:gap-16">
-        {/* メディア面 */}
-        <Reveal className={`relative ${reverse ? "md:order-2" : ""}`}>
+        {/* メディア面（写真は1枚。重ね置きはしない） */}
+        <Reveal className={reverse ? "md:order-2" : ""}>
           <ParallaxImage
             src={image.src}
             alt={image.alt}
@@ -49,20 +46,6 @@ export function Statement({
               {index} — {eyebrow}
             </span>
           </ParallaxImage>
-
-          {/* 2枚目を角に重ねてギャラリー的な奥行きを出す */}
-          {inset && (
-            <ParallaxImage
-              src={inset.src}
-              alt={inset.alt}
-              strength={12}
-              sizes="25vw"
-              className={[
-                "absolute bottom-[-2.5rem] hidden aspect-square w-[38%] rounded-[var(--radius-card)] shadow-[0_24px_60px_-24px_rgba(42,33,28,0.55)] md:block",
-                reverse ? "left-[-2rem]" : "right-[-2rem]",
-              ].join(" ")}
-            />
-          )}
         </Reveal>
 
         {/* コピー面 */}
