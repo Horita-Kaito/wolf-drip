@@ -1,5 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { Statement } from "@/components/sections/Statement";
+import { Band } from "@/components/sections/Band";
+import { Gallery } from "@/components/sections/Gallery";
 import { MenuSection } from "@/components/sections/MenuSection";
 import { News } from "@/components/sections/News";
 import { Contact } from "@/components/sections/Contact";
@@ -55,7 +57,11 @@ export default async function Home() {
         title="深く、静かに、目を覚ます。"
         body="選ぶのはスペシャルティコーヒーだけ。湯気の向こうに、焦げた砂糖と乾いた木の匂い。舌の奥に残る余韻が、次の一杯を呼ぶ。"
         cta={{ href: "#coffee", label: "コーヒーを見る" }}
-        tone="coffee"
+        image={{
+          src: "/images/pour-splash.webp",
+          alt: "カップに注がれ、跳ねるコーヒー",
+        }}
+        inset={{ src: "/images/beans.webp", alt: "焙煎したコーヒー豆" }}
       />
 
       <MenuSection
@@ -67,13 +73,31 @@ export default async function Home() {
         tone="coffee"
       />
 
+      <Band
+        image={{
+          src: "/images/canvas-logo.webp",
+          alt: "布に型押しされた WOLF DRIP のロゴ",
+        }}
+        eyebrow="Before Reason"
+        title="考えるより先に、手が伸びる。"
+      />
+
+      <Gallery />
+
       <Statement
         index="02"
         eyebrow="Herb Tea"
         title="湯を注ぐ。草の匂いが立つ。"
         body="使うのは国産のハーブ。青い葉、乾いた土、日が落ちたあとの空気。急がない時間のための一杯。"
         cta={{ href: "#tea", label: "ハーブティーを見る" }}
-        tone="herb"
+        image={{
+          src: "/images/towels-ledge.webp",
+          alt: "窓辺に置かれたタオルとカップ",
+        }}
+        inset={{
+          src: "/images/table-still.webp",
+          alt: "テーブルの上のアイスコーヒー",
+        }}
         reverse
       />
 

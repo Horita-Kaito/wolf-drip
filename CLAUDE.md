@@ -103,16 +103,20 @@ src/
       Footer.tsx      — フッター（メニュー/連絡先/大型ワードマーク）
       SmoothScroll.tsx — Lenisラッパー（ページ遷移時スクロールリセット、lib/lenis.tsにインスタンス共有）
     sections/
-      Hero.tsx        — ヒーロー（角丸ブロック + SVGロゴ + DRIP落下アニメーション + 宣言コピー + ピルCTA）
-      Statement.tsx   — ブランドステートメント（メディア面 + コピー、左右交互。page.tsxから2回使用）
+      Hero.tsx        — ヒーロー（全面写真 + SVGロゴ + DRIP落下アニメーション + 宣言コピー + ピルCTA）
+      Statement.tsx   — ブランドステートメント（大判写真 + 差し込み写真 + コピー、左右交互。page.tsxから2回使用）
+      Band.tsx        — 全幅の写真バンド（視差の効いた1枚 + 一文だけ）
+      Gallery.tsx     — 3列ギャラリー（列ごとに速度を変えた視差。ブランド写真12枚）
       MenuSection.tsx — メニュー（横スナップスライダー。コーヒー/ハーブティーで共用、toneで色分け）
       News.tsx        — お知らせカード列（microCMS連携）
-      Contact.tsx     — お問い合わせ（Instagram DM誘導。フォームはバックエンド実装後に復活）
+      Contact.tsx     — お問い合わせ（写真 + 濃いスクリム。Instagram DM誘導）
     ui/
       PillButton.tsx  — ピルボタン（hoverで下から面が満ちて反転。#アンカーはLenisで送る）
       Reveal.tsx      — スクロール表示モーション共通ラッパー（初期状態はglobals.cssの[data-reveal]）
+      ParallaxImage.tsx — 枠の中で画像だけが流れる視差画像（サイト全体の写真はこれ経由）
       WolfDripLogo.tsx — WOLF DRIPロゴのSVGコンポーネント
       InstagramIcon.tsx — Instagramアイコン
+  public/images/      — ブランド写真22点（提供素材を1400px幅/webp/q76に最適化。計3.8MB）
   lib/
     microcms.ts       — microCMSクライアント + 型定義 + 取得関数
     site.ts           — 正規URL（siteUrl）とInstagram URLの単一ソース
@@ -122,7 +126,8 @@ src/
 ### デザイン方針（2026-07 rhode参照リニューアル）
 - [rhodeskin.com](https://www.rhodeskin.com/) のセクション設計とモーションを踏襲。カラーとフォントはWOLF DRIPのまま
 - 大きな面を角丸で切り出す（`--radius-block` 12px / `--radius-card` 8px）、ピルボタン、左右交互のメディア+コピー、横スナップスライダー
-- モーションは「スクロールで下から静かに現れる」に統一（`Reveal`）。GSAPのpinによるスクロールジャックは使わない
+- 写真主役のギャラリー構成。モーションは「スクロールで下から静かに現れる（`Reveal`）」＋「枠の中で写真が流れる視差（`ParallaxImage`）」の2つに統一。GSAPのpinによるスクロールジャックは使わない
+- 縦長素材を横長に切るときは `ParallaxImage` の `objectPosition` で被写体を残す（ヒーローの犬は `center 32%`）
 - ヘッダーの `backdrop-blur` は `position: fixed` の基準になるため、全画面メニューは `<header>` の外に置く（内側だとヘッダー内に閉じ込められる）
 
 ---
@@ -162,7 +167,7 @@ Vercel側にも同じ環境変数の設定が必要。
 - **Laravelバックエンド**: お問い合わせ管理、Shopify連携、顧客管理。VPSに構築予定
 - **ステージング環境**: Vercel以外も検討中（Laravelと同一VPSでの運用など）
 - **favicon / OG画像**: ロゴデザイン確定待ち
-- **写真・映像素材**: AI生成の仮ヒーロー動画は撤去（git履歴に残存）。現状ヒーロー/ステートメントの面は色面＋グレインのCSSで代用中。正式素材が入り次第、`Hero.tsx` の背景divと `Statement.tsx` のメディア面を画像/動画に差し替える（レイアウトは変更不要）
+- **写真素材**: ブランド写真を `public/images/` に配置済み（提供素材、2026-07）。AI生成の仮ヒーロー動画は撤去（git履歴に残存）。素材を追加・差し替える場合は同じ最適化（`magick <src> -resize 1400x -quality 76 -define webp:method=6 -strip`）を通す
 - **ドメイン**: 未決定
 
 ---

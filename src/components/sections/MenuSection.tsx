@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 
 export type MenuCardItem = {
   name: string;
@@ -137,24 +137,29 @@ export function MenuSection({ id, eyebrow, title, lead, items, tone }: Props) {
             className="group w-[74vw] shrink-0 snap-start sm:w-[46vw] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)]"
           >
             {/* 画像面 */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-surface)]">
-              {item.image ? (
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 46vw, 74vw"
-                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                />
-              ) : (
+            {item.image ? (
+              <ParallaxImage
+                src={item.image}
+                alt={item.name}
+                strength={5}
+                zoomOnHover
+                sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 46vw, 74vw"
+                className="aspect-[4/5] w-full rounded-[var(--radius-card)]"
+              >
+                <span className="absolute left-4 top-4 z-10 text-[10px] uppercase tracking-[0.25em] text-[var(--color-fg-inverse)]/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </ParallaxImage>
+            ) : (
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)]">
                 <div
                   className={`grain absolute inset-0 ${tonePlaceholder[tone]} transition-transform duration-[1200ms] ease-out group-hover:scale-105`}
                 />
-              )}
-              <span className="absolute left-4 top-4 text-[10px] uppercase tracking-[0.25em] text-[var(--color-fg-inverse)]/70">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
+                <span className="absolute left-4 top-4 z-10 text-[10px] uppercase tracking-[0.25em] text-[var(--color-fg-inverse)]/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+            )}
 
             {/* 情報面 */}
             <div className="px-1 pt-6">

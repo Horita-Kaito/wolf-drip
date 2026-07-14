@@ -1,14 +1,6 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "@/components/ui/Reveal";
 import { PillButton } from "@/components/ui/PillButton";
-
-gsap.registerPlugin(ScrollTrigger);
-
-type Tone = "coffee" | "herb";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 
 type Props = {
   /** メディア面に添える連番（01, 02...） */
@@ -17,20 +9,16 @@ type Props = {
   title: string;
   body: string;
   cta: { href: string; label: string };
-  tone: Tone;
-  /** true でメディアを右に置く（2枚目以降を左右交互にするため） */
+  image: { src: string; alt: string };
+  /** 添える小さな2枚目（ずらして重ねる）。無ければ1枚組み */
+  inset?: { src: string; alt: string };
+  /** true でメディアを右に置く（左右交互にするため） */
   reverse?: boolean;
-};
-
-const toneField: Record<Tone, string> = {
-  coffee:
-    "bg-[radial-gradient(90%_70%_at_25%_20%,#7a5235_0%,transparent_60%),linear-gradient(160deg,#3a2c23_0%,#1c1512_100%)]",
-  herb: "bg-[radial-gradient(90%_70%_at_75%_25%,#8f875f_0%,transparent_60%),linear-gradient(160deg,#5f5434_0%,#2f2a1c_100%)]",
 };
 
 /**
  * rhode の image-with-content を踏襲したブランドステートメント。
- * 左右どちらかに大きなメディア面、反対側に短い断言と情景のコピーを置く。
+ * 大きな写真を視差で流し、反対側に短い断言と情景のコピーを置く。
  */
 export function Statement({
   index,
@@ -38,52 +26,42 @@ export function Statement({
   title,
   body,
   cta,
-  tone,
+  image,
+  inset,
   reverse = false,
 }: Props) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const fieldRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(fieldRef.current, {
-        yPercent: -8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[var(--color-bg)] px-5 py-20 md:px-8 md:py-28"
-    >
-      <div className="mx-auto grid max-w-[100rem] items-center gap-10 md:grid-cols-2 md:gap-16">
+    <section className="bg-[var(--color-bg)] px-5 py-20 md:px-8 md:py-28">
+      <div className="mx-auto grid max-w-[100rem] items-center gap-12 md:grid-cols-2 md:gap-16">
         {/* メディア面 */}
-        <Reveal
-          className={[
-            "grain relative aspect-[4/5] overflow-hidden rounded-[var(--radius-block)] md:aspect-[5/6]",
-            reverse ? "md:order-2" : "",
-          ].join(" ")}
-        >
-          <div
-            ref={fieldRef}
-            className={`absolute inset-0 scale-110 ${toneField[tone]}`}
-          />
-          <span className="absolute bottom-6 left-6 z-10 text-[10px] uppercase tracking-[0.3em] text-[var(--color-fg-inverse)]/70">
-            {index} — {eyebrow}
-          </span>
+        <Reveal className={`relative ${reverse ? "md:order-2" : ""}`}>
+          <ParallaxImage
+            src={image.src}
+            alt={image.alt}
+            strength={8}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="aspect-[4/5] w-full rounded-[var(--radius-block)] md:aspect-[5/6]"
+          >
+            {/* 明るい素材でもキャプションが読めるよう、足元だけ落とす */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,transparent_0%,rgba(28,21,18,0.55)_100%)]" />
+            <span className="absolute bottom-6 left-6 z-10 text-[10px] uppercase tracking-[0.3em] text-[var(--color-fg-inverse)]">
+              {index} — {eyebrow}
+            </span>
+          </ParallaxImage>
+
+          {/* 2枚目を角に重ねてギャラリー的な奥行きを出す */}
+          {inset && (
+            <ParallaxImage
+              src={inset.src}
+              alt={inset.alt}
+              strength={12}
+              sizes="25vw"
+              className={[
+                "absolute bottom-[-2.5rem] hidden aspect-square w-[38%] rounded-[var(--radius-card)] shadow-[0_24px_60px_-24px_rgba(42,33,28,0.55)] md:block",
+                reverse ? "left-[-2rem]" : "right-[-2rem]",
+              ].join(" ")}
+            />
+          )}
         </Reveal>
 
         {/* コピー面 */}
