@@ -103,7 +103,7 @@ export function Gallery() {
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-5 text-[clamp(2rem,4.2vw,3.5rem)] font-medium leading-[1.15] tracking-[0.01em] font-[family-name:var(--font-display)]">
-              Carried, every day.
+              The cup completes the look.
             </h2>
           </Reveal>
         </div>
