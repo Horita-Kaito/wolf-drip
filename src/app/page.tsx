@@ -54,8 +54,8 @@ export default async function Home() {
       <Statement
         index="01"
         eyebrow="Coffee"
-        title="深く、静かに、目を覚ます。"
-        body="選ぶのはスペシャルティコーヒーだけ。湯気の向こうに、焦げた砂糖と乾いた木の匂い。舌の奥に残る余韻が、次の一杯を呼ぶ。"
+        title="濃く、静かに。"
+        body="オリジナルブレンドのコーヒー。"
         cta={{ href: "#coffee", label: "コーヒーを見る" }}
         image={{
           src: "/images/pour-splash.webp",
@@ -68,7 +68,6 @@ export default async function Home() {
         id="coffee"
         eyebrow="Coffee"
         title="コーヒー"
-        lead="深く、力強く、飲むほどに輪郭が出る。"
         items={coffeeData}
         tone="coffee"
       />
@@ -79,7 +78,7 @@ export default async function Home() {
           alt: "布に型押しされた WOLF DRIP のロゴ",
         }}
         eyebrow="Before Reason"
-        title="考えるより先に、手が伸びる。"
+        title="理由は、あとでいい。"
       />
 
       <Gallery />
@@ -87,8 +86,8 @@ export default async function Home() {
       <Statement
         index="02"
         eyebrow="Herb Tea"
-        title="湯を注ぐ。草の匂いが立つ。"
-        body="使うのは国産のハーブ。青い葉、乾いた土、日が落ちたあとの空気。急がない時間のための一杯。"
+        title="湯を注ぐ。香りが立つ。"
+        body="国産ハーブのお茶。"
         cta={{ href: "#tea", label: "ハーブティーを見る" }}
         image={{
           src: "/images/towels-ledge.webp",
@@ -105,7 +104,6 @@ export default async function Home() {
         id="tea"
         eyebrow="Herb Tea"
         title="ハーブティー"
-        lead="国産ハーブ。香りは静かに、長く残る。"
         items={herbTeaData}
         tone="herb"
       />

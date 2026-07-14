@@ -26,14 +26,10 @@ export function Contact() {
             </p>
 
             <h2 className="mt-6 max-w-[18em] text-[clamp(1.7rem,3.4vw,2.75rem)] font-medium leading-[1.5] tracking-[0.06em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-body-ja)]">
-              この一杯を、あなたの店に。
+              この一杯を、あなたの街に。
             </h2>
 
-            <p className="mt-8 max-w-md text-sm leading-[2.2] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]">
-              卸販売は直接取引のみ。お取り扱いのご相談、取材、その他のお問い合わせは
-              Instagram の DM からお受けしています。
-            </p>
-
+            {/* 説明は置かず、窓口だけを示す */}
             <div className="mt-12">
               <PillButton href={INSTAGRAM_URL} tone="dark" external>
                 Instagram DM

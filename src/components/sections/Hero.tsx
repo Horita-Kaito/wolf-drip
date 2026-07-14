@@ -68,7 +68,7 @@ export function Hero() {
 
             <div ref={copyRef} className="mt-8">
               <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-soft)]">
-                Specialty Coffee &amp; Herb Tea — Before Reason
+                Before Reason
               </p>
               <h1 className="mt-5 max-w-[16em] text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.35] tracking-[0.06em] text-[var(--color-fg-inverse)] font-[family-name:var(--font-body-ja)]">
                 香りは、理屈より速い。

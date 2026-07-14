@@ -37,11 +37,6 @@ export function Footer() {
             <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--color-muted-inverse)]">
               Contact
             </p>
-            <p className="mt-6 max-w-xs text-sm leading-[2] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]">
-              卸販売は直接取引のみ。
-              <br />
-              お取り扱いのご相談は Instagram の DM から。
-            </p>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
@@ -55,10 +50,7 @@ export function Footer() {
 
           <div className="md:justify-self-end">
             <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--color-muted-inverse)]">
-              Specialty Coffee &amp; Herb Tea
-            </p>
-            <p className="mt-6 max-w-xs text-sm leading-[2] text-[var(--color-muted-inverse)] font-[family-name:var(--font-body-ja)]">
-              理屈より先に、鼻が気づく。
+              Before Reason
             </p>
           </div>
         </div>
@@ -66,9 +58,6 @@ export function Footer() {
         <div className="flex flex-col-reverse items-center gap-6 py-8 md:flex-row md:justify-between">
           <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-muted-inverse)]">
             &copy; 2026 WOLF DRIP
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-muted-inverse)]">
-            Instagram DM only
           </p>
         </div>
 

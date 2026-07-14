@@ -26,15 +26,13 @@ const zenOldMincho = Zen_Old_Mincho({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "WOLF DRIP — Specialty Coffee & Herb Tea",
+    default: "WOLF DRIP — Coffee & Herb Tea",
     template: "%s | WOLF DRIP",
   },
-  description:
-    "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
+  description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。WOLF DRIP。",
   openGraph: {
-    title: "WOLF DRIP — Specialty Coffee & Herb Tea",
-    description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド、WOLF DRIP。理屈より先に、舌と鼻で選ぶ。本能を刺激する一杯を届けます。",
+    title: "WOLF DRIP — Coffee & Herb Tea",
+    description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。WOLF DRIP。",
     siteName: "WOLF DRIP",
     locale: "ja_JP",
     type: "website",
@@ -55,8 +53,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "WOLF DRIP",
     url: siteUrl,
-    description:
-      "スペシャルティコーヒーと国産ハーブティーのブランド。本能を刺激する一杯を届けます。",
+    description: "オリジナルブレンドのコーヒーと、国産ハーブのお茶。",
     sameAs: [INSTAGRAM_URL],
   };
 

@@ -83,23 +83,16 @@ export function Gallery() {
       className="overflow-hidden bg-[var(--color-bg)] px-5 py-20 md:px-8 md:py-28"
     >
       <div className="mx-auto max-w-[100rem]">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Reveal>
-              <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-dark)]">
-                Gallery
-              </p>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="mt-5 text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.3] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
-                手に取った日の、記録。
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.16}>
-            <p className="max-w-xs text-sm leading-[2] text-[var(--color-muted)] font-[family-name:var(--font-body-ja)]">
-              街で、車の中で、窓辺で。持ち歩かれている姿がいちばん似合う。
+        <div>
+          <Reveal>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--color-accent-dark)]">
+              Gallery
             </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="mt-5 text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.3] tracking-[0.06em] font-[family-name:var(--font-body-ja)]">
+              持ち歩く。
+            </h2>
           </Reveal>
         </div>
 

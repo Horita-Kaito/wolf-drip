@@ -1,9 +1,5 @@
-const MESSAGES = [
-  "SPECIALTY COFFEE & HERB TEA",
-  "国産ハーブ",
-  "卸販売は直接取引のみ",
-  "WOLF DRIP",
-];
+// 文にせず、単語だけを流す（説明を足さず、印象だけを置く）
+const MESSAGES = ["WOLF DRIP", "BEFORE REASON", "ORIGINAL BLEND", "国産ハーブ"];
 
 /**
  * 最上部の告知ティッカー。同じ列を2本並べて -50% までずらすことで途切れなく回す。
