@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useParallaxY } from "@/components/ui/useParallaxY";
 
 type Props = {
   src: string;
@@ -42,34 +39,12 @@ export function ParallaxImage({
   const frameRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+  // yPercent は「内側div自身の高さ」に対する割合。内側divは枠より
+  // (1 + 2*strength/100) 倍高いので、そのまま strength を渡すと確保した余白を
+  // 越えてしまい、両端で下地が覗く。ここで割り戻す。
+  const travel = (strength * 100) / (100 + 2 * strength);
 
-    // yPercent は「内側div自身の高さ」に対する割合。内側divは枠より
-    // (1 + 2*strength/100) 倍高いので、そのまま strength を渡すと余白を
-    // travel > slack で越えてしまい、両端で下地が覗く。ここで割り戻す。
-    const travel = (strength * 100) / (100 + 2 * strength);
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        innerRef.current,
-        { yPercent: -travel },
-        {
-          yPercent: travel,
-          ease: "none",
-          scrollTrigger: {
-            trigger: frameRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        },
-      );
-    }, frameRef);
-
-    return () => ctx.revert();
-  }, [strength]);
+  useParallaxY(innerRef, frameRef, travel);
 
   // 呼び出し側が absolute 等を渡すことがある。Tailwindの生成CSSでは
   // .relative が .absolute より後に来るため、無条件に relative を足すと
