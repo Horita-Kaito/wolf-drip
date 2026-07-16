@@ -60,6 +60,10 @@ export function Header() {
     if (!lenis) return;
 
     event.preventDefault();
+    // メニュー表示中は lenis.stop() 中で、停止中の scrollTo は無視される。
+    // また start() は reset() で進行中のアニメーションを打ち切るため、
+    // menuOpen の effect に任せず scrollTo の前に再開しておく（effect側は no-op になる）
+    lenis.start();
     lenis.scrollTo(`#${hash}`, { offset: -HEADER_HEIGHT });
   };
 
