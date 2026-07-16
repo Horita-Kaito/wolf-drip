@@ -45,6 +45,12 @@ export default async function Home() {
     .filter((item) => ([] as string[]).concat(item.type).includes("ティー"))
     .map(toCard);
 
+  // 先頭カードの画像は一時的にローカル素材で上書き。
+  // APIキーにmicroCMS書き込み権限がないためコード側で対応。CMSに正式画像を登録したらこの上書きを削除する
+  if (herbTeaData[0]) {
+    herbTeaData[0].image = "/herb-tea-top.webp";
+  }
+
   return (
     // overflow-x は body 側で抑えている。ここで overflow を張ると
     // Hero の -mt-20（ヘッダーの下に潜り込ませる負マージン）がクリップされる
